@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# Task Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## UX/UI
 
-## Available Scripts
+### Strategy
 
-In the project directory, you can run:
+### Scope
 
-### `npm start`
+### Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Data models
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##### Profile model
 
-### `npm test`
+##### Task model
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tasks should remain intact even when their creator (owner) or assignee are deleted (e.g., when a team memeber leaves an organization). In this case, the respective fields for the deleted user are set to `null`. Accordingly, the `owner` and `assignee` fields are allowed to be `null`.
 
-### `npm run build`
+##### Watch model
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Access management structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### CRUD
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### UI information design
 
-### `npm run eject`
+##### Navigation bar design
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### Footer design
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Skeleton
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Home page wireframes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Task list wireframes
 
-## Learn More
+#### Task detail wireframes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Surface
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Visual design
 
-### Code Splitting
+##### Logo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##### Minimalism
 
-### Analyzing the Bundle Size
+##### Color schemes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### UX Improvements
 
-### Making a Progressive Web App
+## Project Management | Agile Methodologies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Themes, Epics, Stories & Tasks
 
-### Advanced Configuration
+### Estimation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Project Board
 
-### Deployment
+### Labels
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Prioritization: MoSCoW
 
-### `npm run build` fails to minify
+#### Timeboxing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Sprint planning
+
+#### Sprint retroactives
+
+## Features
+
+### Navigation bar
+
+### Footer
+
+#### Home page
+
+#### Task list
+
+##### Filtering
+
+##### Searching
+
+#### Task detail page
+
+#### Profile list
+
+#### Profile detail page
+
+### Access management
+
+### Admin Panel
+
+### Future features
+
+### Code features
+
+#### Regular testing
+
+#### Adequate commenting
+
+#### DRY
+
+#### Security
+
+## Technologies used
+
+### Languages used
+
+### Other dependencies used
+
+### Tools used
+
+## Deployment
+
+### Prerequisites
+
+### Fork the repository
+
+### Deploy in the development environment
+
+### Deploy to production
+
+#### Pre#deployment steps
+
+#### Steps on Heroku
+
+## Credits
+
+### Code credits
+
+This project was developed on the basis of the [DRF-API](https://github.com/Code-Institute-Solutions/drf-api) by [Code Institute](https://github.com/Code-Institute-Solutions/).
+
+I have also consulted the project [Tick It](https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react) by [Jamie King](https://github.com/jkingportfolio).
+
+Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments0) by [Code Institute](https://github.com/Code-Institute-Solutions/).
+
+### Related advice
+
+### Study/lookup sources
+
+### Text
+
+### Media
+
+#### Images
+
+### Readmes
+
+### Acknowledgements
