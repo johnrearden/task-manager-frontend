@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import appStyles from "../../App.module.css";
+import Task from "./Task";
 
 function TaskDetail() {
     const { id } = useParams();
@@ -32,7 +33,7 @@ function TaskDetail() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Recently updated tasks for mobile</p>
-        <p>Tasks component</p>
+        <Task {...task.results[0]} setTasks={setTask} />
         {/* <Container className={appStyles.Content}>
           Comments
         </Container> */}
