@@ -32,7 +32,7 @@ function App() {
             render={() => (
               <TaskList
                 message="No results found. Adjust the search keyword or watch a task."
-                filter={`/tasks/?watched__owner__profile=${profile_id}&ordering=-watchers__created_at&`}
+                filter={`watched__owner__profile=${profile_id}&ordering=-watchers__created_at&`}
               />
             )}
           />
@@ -42,7 +42,7 @@ function App() {
             render={() => (
               <TaskList
                 message="No results found. Adjust the search keyword assign a task to yourself."
-                filter={`/tasks/?assignee__profile=${profile_id}&ordering=-updated_at&`}
+                filter={`assignee__profile=${profile_id}&ordering=-updated_at&`}
               />
             )}
           />
