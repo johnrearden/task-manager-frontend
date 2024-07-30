@@ -33,7 +33,7 @@ function TaskDetail() {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Recently updated tasks for mobile</p>
-        <Task {...task.results[0]} setTasks={setTask} />
+        <Task {...task.results[0]} setTasks={setTask} taskDetail/>
         {/* <Container className={appStyles.Content}>
           Comments
         </Container> */}
