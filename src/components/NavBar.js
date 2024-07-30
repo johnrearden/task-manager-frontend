@@ -40,6 +40,7 @@ const NavBar = () => {
   const loggedInIcons = (
     <>
       <NavLink
+        exact
         className={styles.NavLink}
         activeClassName={styles.Active}
         // filter link needs to be checked when TaskList is done
@@ -48,6 +49,7 @@ const NavBar = () => {
         <i class="fa-solid fa-eye"></i>Watched
       </NavLink>
       <NavLink
+        exact
         className={styles.NavLink}
         activeClassName={styles.Active}
         // filter link needs to be checked when TaskList is done
