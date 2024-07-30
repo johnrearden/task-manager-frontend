@@ -12,6 +12,7 @@ import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
+import Image from "react-bootstrap/Image";
 
 function TaskCreateForm() {
 
@@ -29,6 +30,16 @@ function TaskCreateForm() {
   });
 
   const { title, excerpt, description, assignee, priority, status, dueDate, image } = taskData;
+
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setTaskData({
+        ...taskData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
 
   const handleChange = (event) => {
     setTaskData({
@@ -150,12 +161,37 @@ function TaskCreateForm() {
             </Form.Group>
 
             <Form.Group className="text-center">
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              >
-                <Asset src={Upload} message="Click or tap to upload an image" />
-              </Form.Label>
+            {image ? (
+                <>
+                  <figure>
+                    <Image className={appStyles.Image} src={image} rounded />
+                  </figure>
+                  <div>
+                    <Form.Label
+                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      htmlFor="image-upload"
+                    >
+                      Change the image
+                    </Form.Label>
+                  </div>
+                </>
+              ) : (
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image-upload"
+                >
+                  <Asset
+                    src={Upload}
+                    message="Click or tap to upload an image"
+                  />
+                </Form.Label>
+              )}
+
+              <Form.File
+                id="image-upload"
+                accept="image/*"
+                onChange={handleChangeImage}
+              />
             </Form.Group>
             <div className="d-md-none">{textFields}</div>
           </Container>
