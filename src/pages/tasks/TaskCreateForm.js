@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useHistory } from "react-router";
+import { axiosReq } from "../../api/axiosDefaults";
+
 import Asset from "../../components/Asset";
 import Image from "react-bootstrap/Image";
 
 function TaskCreateForm() {
-
   const [errors, setErrors] = useState({});
 
   const [taskData, setTaskData] = useState({
@@ -29,7 +32,19 @@ function TaskCreateForm() {
     image: "",
   });
 
-  const { title, excerpt, description, assignee, priority, status, dueDate, image } = taskData;
+  const {
+    title,
+    excerpt,
+    description,
+    assignee,
+    priority,
+    status,
+    dueDate,
+    image,
+  } = taskData;
+
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -48,18 +63,47 @@ function TaskCreateForm() {
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("excerpt", excerpt);
+    formData.append("description", description);
+    formData.append("assignee", assignee);
+    formData.append("priority", priority);
+    formData.append("status", status);
+    formData.append("dueDate", dueDate);
+    formData.append("image", imageInput.current.files[0]);
+
+    try {
+      const { data } = await axiosReq.post("/tasks/", formData);
+      history.push(`/tasks/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
         <Form.Label>Title</Form.Label>
-        <Form.Control 
-            type="text" 
-            placeholder="Title" 
-            name="title"
-            value={title}
-            onChange={handleChange}
+        <Form.Control
+          type="text"
+          placeholder="Title"
+          name="title"
+          value={title}
+          onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Excerpt</Form.Label>
@@ -71,6 +115,11 @@ function TaskCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Description</Form.Label>
@@ -83,14 +132,19 @@ function TaskCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="assignee">
         <Form.Label>Assigned to</Form.Label>
-        <Form.Control 
-            as="select" 
-            name="assignee" 
-            value={assignee}
-            onChange={handleChange}
+        <Form.Control
+          as="select"
+          name="assignee"
+          value={assignee}
+          onChange={handleChange}
         >
           {/* user list to be retrieved dynamically */}
           <option>none</option>
@@ -98,23 +152,34 @@ function TaskCreateForm() {
           <option>user 2</option>
         </Form.Control>
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="priority">
         <Form.Label>Priority</Form.Label>
-        <Form.Control 
-            as="select" 
-            name="priority"
-            value={priority}
-            onChange={handleChange}>
+        <Form.Control
+          as="select"
+          name="priority"
+          value={priority}
+          onChange={handleChange}
+        >
           <option>Low</option>
           <option>Medium</option>
           <option>High</option>
         </Form.Control>
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => {}}
+        onClick={() => history.goBack()}
       >
         cancel
       </Button>
@@ -125,7 +190,7 @@ function TaskCreateForm() {
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col md={9} lg={8} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
@@ -137,31 +202,40 @@ function TaskCreateForm() {
           >
             <Form.Group controlId="status">
               <Form.Label>Status</Form.Label>
-              <Form.Control 
-                as="select" 
+              <Form.Control
+                as="select"
                 name="status"
                 value={status}
                 onChange={handleChange}
-            >
+              >
                 <option>To do</option>
                 <option>In progress</option>
                 <option>Done</option>
               </Form.Control>
             </Form.Group>
+            {errors?.title?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
             <Form.Group controlId="dueDate">
               <Form.Label>Due date</Form.Label>
-              <Form.Control 
-                type="date" 
+              <Form.Control
+                type="date"
                 name="dueDate"
                 value={dueDate}
                 onChange={handleChange}
-            >
-              </Form.Control>
+              ></Form.Control>
             </Form.Group>
+            {errors?.title?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
             <Form.Group className="text-center">
-            {image ? (
+              {image ? (
                 <>
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
@@ -191,8 +265,14 @@ function TaskCreateForm() {
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
+                ref={imageInput}
               />
             </Form.Group>
+            {errors?.title?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
