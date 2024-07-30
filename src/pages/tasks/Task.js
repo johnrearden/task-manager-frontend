@@ -4,6 +4,7 @@ import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Link } from "react-router-dom";
+import { axiosRes } from "../../api/axiosDefaults";
 
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -29,10 +30,45 @@ const Task = (props) => {
     watched_id,
     watchers_count,
     taskDetail,
+    setTasks,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleWatch = async () => {
+    try {
+    // make API request
+      const { data } = await axiosRes.post("/watchers/", { task: id });
+    //   update task data
+      setTasks((prevTasks) => ({
+        ...prevTasks,
+        results: prevTasks.results.map((task) => {
+          return task.id === id
+            ? { ...task, watchers_count: task.watchers_count + 1, watched_id: data.id }
+            : task;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnwatch = async () => {
+    try {
+      await axiosRes.delete(`/watchers/${watched_id}/`);
+      setTasks((prevTasks) => ({
+        ...prevTasks,
+        results: prevTasks.results.map((task) => {
+          return task.id === id
+            ? { ...task, watchers_count: task.watchers_count - 1, watched_id: null }
+            : task;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className={styles.Task}>
@@ -64,17 +100,17 @@ const Task = (props) => {
         {created_at && <Card.Text>Created on: {created_at}</Card.Text>}
         {owner && <Card.Text>Created by: {owner}</Card.Text>}
 
-        <Link to={`/posts/${id}`}>
+        <Link to={`/tasks/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
 
         <div className={styles.TaskBar}>
           {watched_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnwatch}>
               <i className={`fa-solid fa-eye ${styles.Eye}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleWatch}>
               <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
             </span>
           ) : (
@@ -88,7 +124,7 @@ const Task = (props) => {
             </OverlayTrigger>
           )}
           {watchers_count}
-          {/* <Link to={`/posts/${id}`}>
+          {/* <Link to={`/tasks/${id}`}>
           <i className="far fa-comments" />
         </Link>
         {comments_count} */}
