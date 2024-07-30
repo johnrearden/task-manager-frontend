@@ -14,13 +14,40 @@ import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
 
 function TaskCreateForm() {
+
   const [errors, setErrors] = useState({});
+
+  const [taskData, setTaskData] = useState({
+    title: "",
+    excerpt: "",
+    description: "",
+    assignee: "",
+    priority: "",
+    status: "",
+    dueDate: "",
+    image: "",
+  });
+
+  const { title, excerpt, description, assignee, priority, status, dueDate, image } = taskData;
+
+  const handleChange = (event) => {
+    setTaskData({
+      ...taskData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const textFields = (
     <div className="text-center">
       <Form.Group>
         <Form.Label>Title</Form.Label>
-        <Form.Control type="text" placeholder="Title" name="title" />
+        <Form.Control 
+            type="text" 
+            placeholder="Title" 
+            name="title"
+            value={title}
+            onChange={handleChange}
+        />
       </Form.Group>
 
       <Form.Group>
@@ -29,6 +56,8 @@ function TaskCreateForm() {
           type="text"
           placeholder="Short summary of the task (optional)"
           name="excerpt"
+          value={excerpt}
+          onChange={handleChange}
         />
       </Form.Group>
 
@@ -39,12 +68,19 @@ function TaskCreateForm() {
           rows="6"
           placeholder="Detailed description of the task"
           name="content"
+          value={description}
+          onChange={handleChange}
         />
       </Form.Group>
 
       <Form.Group controlId="assignee">
         <Form.Label>Assigned to</Form.Label>
-        <Form.Control as="select" name="assignee">
+        <Form.Control 
+            as="select" 
+            name="assignee" 
+            value={assignee}
+            onChange={handleChange}
+        >
           {/* user list to be retrieved dynamically */}
           <option>none</option>
           <option>user 1</option>
@@ -54,7 +90,11 @@ function TaskCreateForm() {
 
       <Form.Group controlId="priority">
         <Form.Label>Priority</Form.Label>
-        <Form.Control as="select" name="priority">
+        <Form.Control 
+            as="select" 
+            name="priority"
+            value={priority}
+            onChange={handleChange}>
           <option>Low</option>
           <option>Medium</option>
           <option>High</option>
@@ -86,7 +126,12 @@ function TaskCreateForm() {
           >
             <Form.Group controlId="status">
               <Form.Label>Status</Form.Label>
-              <Form.Control as="select" name="status">
+              <Form.Control 
+                as="select" 
+                name="status"
+                value={status}
+                onChange={handleChange}
+            >
                 <option>To do</option>
                 <option>In progress</option>
                 <option>Done</option>
@@ -95,7 +140,12 @@ function TaskCreateForm() {
 
             <Form.Group controlId="dueDate">
               <Form.Label>Due date</Form.Label>
-              <Form.Control type="date" name="dueDate">
+              <Form.Control 
+                type="date" 
+                name="dueDate"
+                value={dueDate}
+                onChange={handleChange}
+            >
               </Form.Control>
             </Form.Group>
 
