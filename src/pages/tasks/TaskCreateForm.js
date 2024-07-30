@@ -18,7 +18,48 @@ function TaskCreateForm() {
 
   const textFields = (
     <div className="text-center">
-      {/* Add your form fields here */}
+      <Form.Group>
+        <Form.Label>Title</Form.Label>
+        <Form.Control type="text" placeholder="Title" name="title" />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Excerpt</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Short summary of the task (optional)"
+          name="excerpt"
+        />
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows="6"
+          placeholder="Detailed description of the task"
+          name="content"
+        />
+      </Form.Group>
+
+      <Form.Group controlId="assignee">
+        <Form.Label>Assigned to</Form.Label>
+        <Form.Control as="select" name="assignee">
+          {/* user list to be retrieved dynamically */}
+          <option>none</option>
+          <option>user 1</option>
+          <option>user 2</option>
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group controlId="priority">
+        <Form.Label>Priority</Form.Label>
+        <Form.Control as="select" name="priority">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </Form.Control>
+      </Form.Group>
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
@@ -43,6 +84,15 @@ function TaskCreateForm() {
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
+            <Form.Group controlId="priority">
+              <Form.Label>Status</Form.Label>
+              <Form.Control as="select" name="priority">
+                <option>To do</option>
+                <option>In progress</option>
+                <option>Done</option>
+              </Form.Control>
+            </Form.Group>
+
             <Form.Group className="text-center">
               <Form.Label
                 className="d-flex justify-content-center"

@@ -139,6 +139,7 @@ Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments
 ### Study/lookup sources
 
 - [React Bootstrap documentation](https://react-bootstrap-v4.netlify.app/)
+- [Rect Bootstrap Form props](https://react-bootstrap-v4.netlify.app/components/forms/#form-group-props)
 
 ### Text
 
