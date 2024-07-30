@@ -84,12 +84,18 @@ function TaskCreateForm() {
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
-            <Form.Group controlId="priority">
+            <Form.Group controlId="status">
               <Form.Label>Status</Form.Label>
-              <Form.Control as="select" name="priority">
+              <Form.Control as="select" name="status">
                 <option>To do</option>
                 <option>In progress</option>
                 <option>Done</option>
+              </Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="dueDate">
+              <Form.Label>Due date</Form.Label>
+              <Form.Control type="date" name="dueDate">
               </Form.Control>
             </Form.Group>
 
