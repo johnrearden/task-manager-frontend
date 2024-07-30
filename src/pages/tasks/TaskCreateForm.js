@@ -115,7 +115,7 @@ function TaskCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.excerpt?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -132,7 +132,7 @@ function TaskCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.description?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -152,7 +152,7 @@ function TaskCreateForm() {
           <option>user 2</option>
         </Form.Control>
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.assignee?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -171,7 +171,7 @@ function TaskCreateForm() {
           <option>High</option>
         </Form.Control>
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.priority?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
@@ -213,7 +213,7 @@ function TaskCreateForm() {
                 <option>Done</option>
               </Form.Control>
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.status?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
@@ -228,7 +228,7 @@ function TaskCreateForm() {
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.dueDate?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
@@ -268,7 +268,7 @@ function TaskCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
-            {errors?.title?.map((message, idx) => (
+            {errors?.image?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
