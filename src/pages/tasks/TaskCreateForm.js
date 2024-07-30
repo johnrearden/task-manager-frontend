@@ -11,17 +11,14 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import Asset from "../../components/Asset";
 
 function TaskCreateForm() {
-
   const [errors, setErrors] = useState({});
-
 
   const textFields = (
     <div className="text-center">
       {/* Add your form fields here */}
-
-
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
@@ -38,28 +35,25 @@ function TaskCreateForm() {
   return (
     <Form>
       <Row>
-      <Col md={9} lg={8} className="d-none d-md-block p-0 p-md-2">
+        <Col md={9} lg={8} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
-        
+
         <Col className="py-2 p-0 p-md-2" md={3} lg={4}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  ASSET
-                </Form.Label>
-
+              <Form.Label
+                className="d-flex justify-content-center"
+                htmlFor="image-upload"
+              >
+                <Asset src={Upload} message="Click or tap to upload an image" />
+              </Form.Label>
             </Form.Group>
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-
       </Row>
     </Form>
   );
