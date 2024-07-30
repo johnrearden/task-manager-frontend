@@ -44,7 +44,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
         // filter link needs to be checked when TaskList is done
-        to={`/tasks/?watched__owner__profile=${currentUser?.profile_id}`}
+        to="/watched"
       >
         <i class="fa-solid fa-eye"></i>Watched
       </NavLink>
@@ -53,7 +53,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
         // filter link needs to be checked when TaskList is done
-        to={`/tasks/?assignee__profile=${currentUser?.profile_id}`}
+        to="/assigned"
       >
         <i class="fa-solid fa-list-check"></i>Assigned to me
       </NavLink>
