@@ -7,13 +7,14 @@ import Container from "react-bootstrap/Container";
 
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import InfiniteScroll from "react-infinite-scroll-component";
 
+import { fetchMoreData } from "../../utils/utils";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/TaskList.module.css";
 import Task from "./Task";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
-
 
 function TaskList({ message, filter = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
@@ -35,19 +36,18 @@ function TaskList({ message, filter = "" }) {
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
-        fetchTasks();
-      }, 1000);
-  
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [filter, query, pathname]);
+      fetchTasks();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Recently updated tasks on mobile</p>
-
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
@@ -61,13 +61,18 @@ function TaskList({ message, filter = "" }) {
             placeholder="Search tasks"
           />
         </Form>
-
         {hasLoaded ? (
           <>
             {tasks.results.length ? (
-              tasks.results.map((task) => (
-                <Task key={task.id} {...task} setTasks={setTasks} />
-              ))
+              <InfiniteScroll
+                children={tasks.results.map((task) => (
+                  <Task key={task.id} {...task} setTasks={setTasks} />
+                ))}
+                dataLength={tasks.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!tasks.next}
+                next={() => fetchMoreData(tasks, setTasks)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
@@ -78,7 +83,8 @@ function TaskList({ message, filter = "" }) {
           <Container className={appStyles.Content}>
             <Asset spinner />
           </Container>
-        )}      </Col>
+        )}{" "}
+      </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <p>Recently updated tasks on desktop</p>
       </Col>
