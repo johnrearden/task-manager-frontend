@@ -141,6 +141,7 @@ Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments
 - [React Bootstrap documentation](https://react-bootstrap-v4.netlify.app/)
 - [Rect Bootstrap Form props](https://react-bootstrap-v4.netlify.app/components/forms/#form-group-props)
 - [React Bootstrap date form input field](https://stackoverflow.com/a/66271815)
+- [`exact` & `strict` props](https://stackoverflow.com/a/52275337s)
 
 ### Text
 
