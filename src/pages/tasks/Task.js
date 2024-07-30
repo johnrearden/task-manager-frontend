@@ -20,12 +20,13 @@ const Task = (props) => {
     excerpt,
     description,
     assignee,
-    // assignee_image,
+    assignee_username,
+    assignee_image,
     image,
     priority,
     status,
     due_date,
-    // owner_id,
+    owner_id,
     owner_image,
     watched_id,
     watchers_count,
@@ -38,14 +39,18 @@ const Task = (props) => {
 
   const handleWatch = async () => {
     try {
-    // make API request
+      // make API request
       const { data } = await axiosRes.post("/watchers/", { task: id });
-    //   update task data
+      //   update task data
       setTasks((prevTasks) => ({
         ...prevTasks,
         results: prevTasks.results.map((task) => {
           return task.id === id
-            ? { ...task, watchers_count: task.watchers_count + 1, watched_id: data.id }
+            ? {
+                ...task,
+                watchers_count: task.watchers_count + 1,
+                watched_id: data.id,
+              }
             : task;
         }),
       }));
@@ -61,7 +66,11 @@ const Task = (props) => {
         ...prevTasks,
         results: prevTasks.results.map((task) => {
           return task.id === id
-            ? { ...task, watchers_count: task.watchers_count - 1, watched_id: null }
+            ? {
+                ...task,
+                watchers_count: task.watchers_count - 1,
+                watched_id: null,
+              }
             : task;
         }),
       }));
@@ -74,11 +83,13 @@ const Task = (props) => {
     <Card className={styles.Task}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-        {/* change this to assignee image & name when this is implemented */}
-        <Link to={`/profiles/${owner}`}>
-            <Avatar src={owner_image} height={55} />
-            {owner}
-          </Link>
+          {/* change this to assignee image & name when this is implemented */}
+          {assignee && (
+            <Link to={`/profiles/${assignee}`}>
+              <Avatar src={assignee_image} height={55} />
+              {assignee_username}
+            </Link>
+          )}
           <div className="d-flex align-items-center">
             <span>{status}</span>
             {is_owner && taskDetail && "..."}
@@ -93,16 +104,21 @@ const Task = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {excerpt && <Card.Text>{excerpt}</Card.Text>}
-        {assignee && <Card.Text>{assignee}</Card.Text>}
         {due_date && <Card.Text>{due_date}</Card.Text>}
         {description && <Card.Text>{description}</Card.Text>}
         {updated_at && <Card.Text>Last updated on: {updated_at}</Card.Text>}
         {created_at && <Card.Text>Created on: {created_at}</Card.Text>}
-        {owner && <Card.Text>Created by: {owner}</Card.Text>}
+        <div>
+          <Card.Text>Created by: </Card.Text>
+          <Link to={`/profiles/${owner_id}`}>
+            <Avatar src={owner_image} height={55} />
+            {owner}
+          </Link>
+        </div>
 
         <Link to={`/tasks/${id}`}>
-        <Card.Img src={image} alt={title} />
-      </Link>
+          <Card.Img src={image} alt={title} />
+        </Link>
 
         <div className={styles.TaskBar}>
           {watched_id ? (
@@ -116,8 +132,8 @@ const Task = (props) => {
           ) : (
             <OverlayTrigger
               placement="top"
-            //   this might have to be changed/removed, 
-            // as only logged-in users will be able to see tasks
+              //   this might have to be changed/removed,
+              // as only logged-in users will be able to see tasks
               overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
             >
               <i className="fa-solid fa-eye" />
