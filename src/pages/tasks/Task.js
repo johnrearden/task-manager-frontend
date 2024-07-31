@@ -83,7 +83,7 @@ const Task = (props) => {
     <Card className={styles.Task}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          {/* change this to assignee image & name when this is implemented */}
+          {/* Display assignee image & name or "not assigned" */}
           {assignee ? (
             <Link to={`/profiles/${assignee}`}>
               <Avatar src={assignee_image} height={55} />
