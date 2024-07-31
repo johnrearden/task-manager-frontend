@@ -44,7 +44,7 @@ function TaskCreateForm() {
     assignee: "",
     priority: "",
     status: "",
-    dueDate: "",
+    due_date: "",
     image: "",
   });
 
@@ -55,7 +55,7 @@ function TaskCreateForm() {
     assignee,
     priority,
     status,
-    dueDate,
+    due_date,
     image,
   } = taskData;
 
@@ -89,7 +89,7 @@ function TaskCreateForm() {
     formData.append("assignee", assignee);
     formData.append("priority", priority);
     formData.append("status", status);
-    formData.append("dueDate", dueDate);
+    formData.append("due_date", due_date);
     formData.append("image", imageInput.current.files[0]);
 
     try {
@@ -254,16 +254,16 @@ function TaskCreateForm() {
               </Alert>
             ))}
 
-            <Form.Group controlId="dueDate">
+            <Form.Group controlId="due_date">
               <Form.Label>Due date</Form.Label>
               <Form.Control
                 type="date"
-                name="dueDate"
-                value={dueDate}
+                name="due_date"
+                value={due_date}
                 onChange={handleChange}
               ></Form.Control>
             </Form.Group>
-            {errors?.dueDate?.map((message, idx) => (
+            {errors?.due_date?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
