@@ -105,8 +105,8 @@ const Task = (props) => {
 
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {excerpt && <Card.Text>{excerpt}</Card.Text>}
-        {due_date && <Card.Text>{due_date}</Card.Text>}
+        Excerpt: {excerpt && <Card.Text>{excerpt}</Card.Text>}
+        Due date:{due_date && <Card.Text>{due_date}</Card.Text>}
         {description && <Card.Text>{description}</Card.Text>}
         {updated_at && <Card.Text>Last updated on: {updated_at}</Card.Text>}
         {created_at && <Card.Text>Created on: {created_at}</Card.Text>}
