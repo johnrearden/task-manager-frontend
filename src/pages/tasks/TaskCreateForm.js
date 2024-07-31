@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -20,6 +20,23 @@ import Image from "react-bootstrap/Image";
 
 function TaskCreateForm() {
   const [errors, setErrors] = useState({});
+  const [profiles, setProfiles] = useState({});
+
+  // fetch all profiles from API (based on handleMount in CurrentUserContext)
+  const fetchProfiles = async () => {
+    try {
+      const { data } = await axiosReq.get(`/profiles/`);
+      setProfiles(data.results);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfiles();
+  }, []);
+
+  console.log("profiles", profiles);
 
   const [taskData, setTaskData] = useState({
     title: "",
@@ -146,10 +163,15 @@ function TaskCreateForm() {
           value={assignee}
           onChange={handleChange}
         >
-          {/* user list to be retrieved dynamically */}
+          {/* user list retrieved dynamically */}
           <option>none</option>
-          <option>user 1</option>
-          <option>user 2</option>
+          {profiles.length && (
+            <>
+              {profiles.map((profile) => {
+                return <option>{profile.owner}</option>;
+              })}
+            </>
+          )}
         </Form.Control>
       </Form.Group>
       {errors?.assignee?.map((message, idx) => (
