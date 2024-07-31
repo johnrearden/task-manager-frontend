@@ -74,6 +74,16 @@ Tasks should remain intact even when their creator (owner) or assignee are delet
 
 #### Home page
 
+### Create task page
+
+#### Assignee dropdown
+
+Fetches the list of profiles from the API, and displays them as options in the dropdown.
+
+It displays the first and/or last name of the user if these are filled in. Otherwise, it displays the username.
+
+The Profile ID is sent to the API. Since a profile is automatically created whenever a user is created, profile ID and user ID should be the same.
+
 #### Task list
 
 ##### Filtering
@@ -81,6 +91,12 @@ Tasks should remain intact even when their creator (owner) or assignee are delet
 ##### Searching
 
 #### Task detail page
+
+#### Watch/unwatch function
+
+Users can choose if they want to watch tasks created by them, as this might be required for some tasks but not others.
+
+The watch button is an eye icon and a toolip instruction is show when hovering over it. This changes dynamically depending on whether the logged-in user is already watching the task or not.
 
 #### Profile list
 
