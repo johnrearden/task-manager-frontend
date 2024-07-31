@@ -40,7 +40,7 @@ const Task = (props) => {
   const handleWatch = async () => {
     try {
       // make API request
-      const { data } = await axiosRes.post("/watchers/", {watched:id});
+      const { data } = await axiosRes.post("/watchers/", { watched: id });
       //   update task data
       setTasks((prevTasks) => ({
         ...prevTasks,
@@ -128,14 +128,28 @@ const Task = (props) => {
             >
               <i className="fa-solid fa-eye-slash" />
             </OverlayTrigger>
-          ): watched_id ? (
-            <span onClick={handleUnwatch}>
-              <i className={`fa-solid fa-eye ${styles.Eye}`} />
-            </span>
+          ) : watched_id ? (
+            <OverlayTrigger
+              placement="top"
+              // tooltip next not a mistake: 
+              // it will activate AFTER the onclick function is run
+              overlay={<Tooltip>Unwatch task</Tooltip>}
+            >
+              <span onClick={handleUnwatch}>
+                <i className={`fa-solid fa-eye ${styles.Eye}`} />
+              </span>
+            </OverlayTrigger>
           ) : currentUser ? (
+            <OverlayTrigger
+            placement="top"
+            // tooltip next not a mistake: 
+            // it will activate AFTER the onclick function is run
+            overlay={<Tooltip>Watch task</Tooltip>}
+          >
             <span onClick={handleWatch}>
               <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
             </span>
+            </OverlayTrigger>
           ) : (
             <OverlayTrigger
               placement="top"
