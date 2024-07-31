@@ -27,6 +27,7 @@ function TaskCreateForm() {
     try {
       const { data } = await axiosReq.get(`/profiles/`);
       setProfiles(data.results);
+      console.log("profiles", profiles);
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +37,6 @@ function TaskCreateForm() {
     fetchProfiles();
   }, []);
 
-  console.log("profiles", profiles);
 
   const [taskData, setTaskData] = useState({
     title: "",
@@ -168,7 +168,11 @@ function TaskCreateForm() {
           {profiles.length && (
             <>
               {profiles.map((profile) => {
-                return <option>{profile.owner}</option>;
+                return <option 
+                  key={profile.id} 
+                  value={profile.id}>
+                    {profile.owner}
+                </option>;
               })}
             </>
           )}
