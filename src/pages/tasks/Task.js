@@ -40,6 +40,7 @@ const Task = (props) => {
   const handleWatch = async () => {
     try {
       // make API request
+      // sending the correct id (watched) solved with the help of tutor Oisin
       const { data } = await axiosRes.post("/watchers/", { watched: id });
       //   update task data
       setTasks((prevTasks) => ({

@@ -166,6 +166,7 @@ function TaskCreateForm() {
           {/* profile list retrieved dynamically */}
           <option>none</option>
           {/* if profies are retrieved */}
+          {/* conditional added at the suggestion of tutor Oisin */}
           {profiles.length && (
             <>
               {profiles.map((profile) => {
