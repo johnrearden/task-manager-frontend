@@ -166,9 +166,10 @@ function TaskCreateForm() {
           value={priority}
           onChange={handleChange}
         >
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
+          {/* value props have to match PRIORITY_OPTIONS in task/models.py */}
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
         </Form.Control>
       </Form.Group>
       {errors?.priority?.map((message, idx) => (
@@ -208,9 +209,10 @@ function TaskCreateForm() {
                 value={status}
                 onChange={handleChange}
               >
-                <option>To do</option>
-                <option>In progress</option>
-                <option>Done</option>
+                {/* value props have to match STATUS_OPTIONS in task/models.py */}
+                <option value="TO-DO">To do</option>
+                <option value="IN-PROGRESS">In progress</option>
+                <option value="DONE">Done</option>
               </Form.Control>
             </Form.Group>
             {errors?.status?.map((message, idx) => (
