@@ -40,7 +40,7 @@ const Task = (props) => {
   const handleWatch = async () => {
     try {
       // make API request
-      const { data } = await axiosRes.post("/watchers/", {task:id});
+      const { data } = await axiosRes.post("/watchers/", {watched:id});
       //   update task data
       setTasks((prevTasks) => ({
         ...prevTasks,
