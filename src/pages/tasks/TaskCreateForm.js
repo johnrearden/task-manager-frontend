@@ -162,15 +162,23 @@ function TaskCreateForm() {
           value={assignee}
           onChange={handleChange}
         >
-          {/* user list retrieved dynamically */}
+          {/* profile list retrieved dynamically */}
           <option>none</option>
+          {/* if profies are retrieved */}
           {profiles.length && (
             <>
               {profiles.map((profile) => {
                 return <option 
                   key={profile.id} 
                   value={profile.id}>
-                    {profile.owner}
+                  {/* show first name, last name or both is available
+                  otherwise, show username */}
+                  {profile.firstname ? 
+                    profile.firstname+" "+profile.lastname 
+                    : profile.lastname ?
+                    profile.lastname
+                    : profile.owner
+                  }
                 </option>;
               })}
             </>
