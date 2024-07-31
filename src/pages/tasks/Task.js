@@ -84,11 +84,13 @@ const Task = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           {/* change this to assignee image & name when this is implemented */}
-          {assignee && (
+          {assignee ? (
             <Link to={`/profiles/${assignee}`}>
               <Avatar src={assignee_image} height={55} />
               {assignee_username}
             </Link>
+          ) : (
+          <span>Not assigned</span>
           )}
           <div className="d-flex align-items-center">
             <span>{status}</span>
