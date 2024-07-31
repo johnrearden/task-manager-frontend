@@ -40,7 +40,7 @@ const Task = (props) => {
   const handleWatch = async () => {
     try {
       // make API request
-      const { data } = await axiosRes.post("/watchers/", { task: id });
+      const { data } = await axiosRes.post("/watchers/", {task:id});
       //   update task data
       setTasks((prevTasks) => ({
         ...prevTasks,
@@ -121,7 +121,14 @@ const Task = (props) => {
         </Link>
 
         <div className={styles.TaskBar}>
-          {watched_id ? (
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't watch your own tasks!</Tooltip>}
+            >
+              <i className="fa-solid fa-eye-slash" />
+            </OverlayTrigger>
+          ): watched_id ? (
             <span onClick={handleUnwatch}>
               <i className={`fa-solid fa-eye ${styles.Eye}`} />
             </span>
