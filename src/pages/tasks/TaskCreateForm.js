@@ -62,6 +62,7 @@ function TaskCreateForm() {
   const imageInput = useRef(null);
   const history = useHistory();
 
+  //  look at this when making image optional
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
