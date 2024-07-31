@@ -121,14 +121,7 @@ const Task = (props) => {
         </Link>
 
         <div className={styles.TaskBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't watch your own tasks!</Tooltip>}
-            >
-              <i className="fa-solid fa-eye-slash" />
-            </OverlayTrigger>
-          ) : watched_id ? (
+          {watched_id ? (
             <OverlayTrigger
               placement="top"
               // tooltip next not a mistake: 
