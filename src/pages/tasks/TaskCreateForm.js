@@ -27,7 +27,6 @@ function TaskCreateForm() {
     try {
       const { data } = await axiosReq.get(`/profiles/`);
       setProfiles(data.results);
-      console.log("profiles", profiles);
     } catch (err) {
       console.log(err);
     }
