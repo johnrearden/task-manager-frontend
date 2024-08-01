@@ -117,8 +117,8 @@ const Task = (props) => {
           </div>
           <div className="d-flex align-items-center">
             <span>Prio: {priority}</span>
-            {/* only available on the TaskDetail view – might change later */}
-            {is_owner && taskDetail && (
+            {/* available on both TaskDetail & TaskList views */}
+            {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={() => setShowDeleteModal(true)}
