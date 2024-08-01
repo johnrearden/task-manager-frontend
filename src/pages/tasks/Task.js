@@ -125,13 +125,14 @@ const Task = (props) => {
               />
             )}{" "}
           </div>
+
+           {/* deletion confirmation modal based on 
+          https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
           <Modal
           show={showDeleteModal}
           onHide={() => setShowDeleteModal(false)}
           centered={true}
         >
-          {/* deletion confirmation modal based on 
-          https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
           <Modal.Header closeButton>
             <Modal.Title>Confirm Deletetion</Modal.Title>
           </Modal.Header>
@@ -172,7 +173,7 @@ const Task = (props) => {
           {watched_id ? (
             <OverlayTrigger
               placement="top"
-              // tooltip next not a mistake:
+              // tooltip text not a mistake:
               // it will activate AFTER the onclick function is run
               overlay={<Tooltip>Unwatch task</Tooltip>}
             >
@@ -183,7 +184,7 @@ const Task = (props) => {
           ) : currentUser ? (
             <OverlayTrigger
               placement="top"
-              // tooltip next not a mistake:
+              // tooltip text not a mistake:
               // it will activate AFTER the onclick function is run
               overlay={<Tooltip>Watch task</Tooltip>}
             >
