@@ -9,6 +9,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Task.module.css";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Task = (props) => {
   const {
@@ -99,7 +100,8 @@ const Task = (props) => {
           </div>
           <div className="d-flex align-items-center">
             <span>Prio: {priority}</span>
-            {is_owner && taskDetail && "..."}
+            {/* only available on the TaskDetail view – might change later */}
+            {is_owner && taskDetail && < MoreDropdown />}
           </div>
         </Media>
       </Card.Body>
