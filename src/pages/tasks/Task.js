@@ -40,7 +40,7 @@ const Task = (props) => {
   const history = useHistory();
 
   const handleEdit = () => {
-    history.push(`/posts/${id}/edit`);
+    history.push(`/tasks/${id}/edit`);
   };
 
   const handleDelete = async () => {
