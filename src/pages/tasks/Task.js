@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { Modal, Button } from "react-bootstrap";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -38,6 +39,7 @@ const Task = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleEdit = () => {
     history.push(`/tasks/${id}/edit`);
@@ -49,6 +51,7 @@ const Task = (props) => {
       history.goBack();
     } catch (err) {
       console.log(err);
+      setShowDeleteModal(false);
     }
   };
 
@@ -106,7 +109,7 @@ const Task = (props) => {
               {assignee_username}
             </Link>
           ) : (
-          <span>Not assigned</span>
+            <span>Not assigned</span>
           )}
           <div className="d-flex align-items-center">
             <span>{status}</span>
@@ -118,9 +121,33 @@ const Task = (props) => {
             {is_owner && taskDetail && (
               <MoreDropdown
                 handleEdit={handleEdit}
-                handleDelete={handleDelete}
+                handleDelete={() => setShowDeleteModal(true)}
               />
-            )}          </div>
+            )}{" "}
+          </div>
+          <Modal
+          show={showDeleteModal}
+          onHide={() => setShowDeleteModal(false)}
+          centered={true}
+        >
+          {/* deletion confirmation modal based on 
+          https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm Deletetion</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowDeleteModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={handleDelete}>
+              Delete
+            </Button>
+          </Modal.Footer>
+        </Modal>
         </Media>
       </Card.Body>
 
@@ -138,16 +165,14 @@ const Task = (props) => {
             {owner}
           </Link>
         </div>
-
         <Link to={`/tasks/${id}`}>
           <Card.Img src={image} alt={title} />
         </Link>
-
         <div className={styles.TaskBar}>
           {watched_id ? (
             <OverlayTrigger
               placement="top"
-              // tooltip next not a mistake: 
+              // tooltip next not a mistake:
               // it will activate AFTER the onclick function is run
               overlay={<Tooltip>Unwatch task</Tooltip>}
             >
@@ -157,14 +182,14 @@ const Task = (props) => {
             </OverlayTrigger>
           ) : currentUser ? (
             <OverlayTrigger
-            placement="top"
-            // tooltip next not a mistake: 
-            // it will activate AFTER the onclick function is run
-            overlay={<Tooltip>Watch task</Tooltip>}
-          >
-            <span onClick={handleWatch}>
-              <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
-            </span>
+              placement="top"
+              // tooltip next not a mistake:
+              // it will activate AFTER the onclick function is run
+              overlay={<Tooltip>Watch task</Tooltip>}
+            >
+              <span onClick={handleWatch}>
+                <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
+              </span>
             </OverlayTrigger>
           ) : (
             <OverlayTrigger
