@@ -39,6 +39,10 @@ const Task = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`);
+  };
+
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}/`);
@@ -113,6 +117,7 @@ const Task = (props) => {
             {/* only available on the TaskDetail view – might change later */}
             {is_owner && taskDetail && (
               <MoreDropdown
+                handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />
             )}          </div>
