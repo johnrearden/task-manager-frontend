@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 
 import Avatar from "../../components/Avatar";
@@ -37,6 +37,16 @@ const Task = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/tasks/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleWatch = async () => {
     try {
@@ -101,8 +111,11 @@ const Task = (props) => {
           <div className="d-flex align-items-center">
             <span>Prio: {priority}</span>
             {/* only available on the TaskDetail view – might change later */}
-            {is_owner && taskDetail && < MoreDropdown />}
-          </div>
+            {is_owner && taskDetail && (
+              <MoreDropdown
+                handleDelete={handleDelete}
+              />
+            )}          </div>
         </Media>
       </Card.Body>
 
