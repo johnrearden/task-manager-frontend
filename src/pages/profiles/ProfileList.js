@@ -4,6 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Profile from "./Profile";
 
 // get the list of profiles from most to least recently updated
 const ProfileList = () => {
@@ -39,7 +40,7 @@ const ProfileList = () => {
         <>
           <h3><i class="fa-solid fa-users-line"></i>Teammates</h3>
           {profileList.results.map((profile) => (
-            <p key={profile.id}>{profile.owner}</p>
+            <Profile key={profile.id} profile={profile} />
           ))}
         </>
       ) : (
