@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 
 const Profile = (props) => {
-  const { profile, mobile, imageSize = 55 } = props;
+  const { profile, imageSize = 55 } = props;
   const { id, image, owner, firstname, lastname } = profile;
 
   return (
     <Link className="align-self-center" to={`/profiles/${id}`}>
       <div
-        className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
+        className={`my-3 d-flex align-items-center`}
       >
         <div>
           <Avatar src={image} height={imageSize} />
