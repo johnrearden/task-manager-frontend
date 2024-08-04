@@ -5,7 +5,7 @@ import Avatar from "../../components/Avatar";
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
-  const { id, image, owner } = profile;
+  const { id, image, owner, firstname, lastname } = profile;
 
   return (
     <Link className="align-self-center" to={`/profiles/${id}`}>
@@ -16,7 +16,15 @@ const Profile = (props) => {
           <Avatar src={image} height={imageSize} />
         </div>
         <div className={`mx-2 ${styles.WordBreak}`}>
-          <strong>{owner}</strong>
+          {/* show first name, last name or both if available
+                  otherwise, show username */}
+          <strong>
+            {firstname
+              ? firstname + " " + profile.lastname
+              : lastname
+              ? lastname
+              : owner}
+          </strong>
         </div>
       </div>
     </Link>
