@@ -37,7 +37,7 @@ const ProfileList = () => {
     <Container className={appStyles.Content}>
       {profileList.results.length ? (
         <>
-          <p>Recently updated profiles</p>
+          <h3><i class="fa-solid fa-users-line"></i>Teammates</h3>
           {profileList.results.map((profile) => (
             <p key={profile.id}>{profile.owner}</p>
           ))}
