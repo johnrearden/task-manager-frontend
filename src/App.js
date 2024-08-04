@@ -9,6 +9,7 @@ import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskDetail from "./pages/tasks/TaskDetail";
 import TaskList from "./pages/tasks/TaskList";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import ProfileList from "./pages/profiles/ProfileList";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -50,6 +51,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
           <Route exact path="/tasks/:id" render={() => <TaskDetail />} />
+          <Route exact path="/team" render={() => <ProfileList />} />
           <Route render={() => <h1>Oops! Page not found</h1>} />
         </Switch>
       </Container>
