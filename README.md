@@ -150,7 +150,6 @@ I have also consulted the project [Tick It](https://github.com/Code-Institute-Su
 
 Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments0) by [Code Institute](https://github.com/Code-Institute-Solutions/).
 
-
 ### Related advice
 
 ### Study/lookup sources
@@ -160,6 +159,7 @@ Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments
 - [React Bootstrap date form input field](https://stackoverflow.com/a/66271815)
 - [`exact` & `strict` props](https://stackoverflow.com/a/52275337s)
 - [ternary conditional](https://www.w3schools.com/react/react_es6_ternary.asp)
+- [swimlanes in GitHub Projects](https://github.com/blahosyl/spicy?tab=readme-ov-file)
 
 ### Text
 
