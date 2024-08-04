@@ -5,6 +5,7 @@ import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Profile from "./Profile";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 // get the list of profiles from most to least recently updated
 const ProfileList = () => {
@@ -38,7 +39,9 @@ const ProfileList = () => {
     <Container className={appStyles.Content}>
       {profileList.results.length ? (
         <>
+            <Link className="align-self-center" to={`/team`}>
           <h3><i class="fa-solid fa-users-line"></i>Teammates</h3>
+          </Link>
           {profileList.results.map((profile) => (
             <Profile key={profile.id} profile={profile} />
           ))}
