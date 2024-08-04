@@ -160,6 +160,7 @@ Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments
 - [`exact` & `strict` props](https://stackoverflow.com/a/52275337s)
 - [ternary conditional](https://www.w3schools.com/react/react_es6_ternary.asp)
 - [swimlanes in GitHub Projects](https://github.blog/changelog/2023-07-27-github-issues-projects-july-27th-update/#%F0%9F%8F%8A-board-swimlanes)
+- [use template literals for multiple `className` props](https://stackoverflow.com/a/39053038)
 
 ### Text
 
