@@ -57,6 +57,7 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         exact
+        // only show this on small screens
         className={`${styles.NavLink} d-md-none`}
         activeClassName={styles.Active}
         to="/team"
