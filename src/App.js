@@ -14,6 +14,7 @@ import ProfileDetail from "./pages/profiles/ProfileDetail";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import NotFound from "./components/NotFound";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -72,7 +73,7 @@ function App() {
             path="/profiles/:id/edit/password"
             render={() => <UserPasswordForm />}
           />
-          <Route render={() => <h1>Oops! Page not found</h1>} />
+          <Route render={() => <NotFound />} />
         </Switch>
       </Container>
     </div>
