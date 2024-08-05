@@ -81,6 +81,9 @@ const ProfileEditForm = () => {
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
+        // also update firstname and lastname of currentUser
+        profile_firstname: data.firstname,
+        profile_lastname: data.lastname,
       }));
       history.goBack();
     } catch (err) {
