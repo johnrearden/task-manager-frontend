@@ -26,11 +26,14 @@ const ProfileEditForm = () => {
   const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
-    name: "",
-    content: "",
+    firstname: "",
+    lastname: "",
+    role: "",
+    pronouns: "",
+    about: "",
     image: "",
   });
-  const { name, content, image } = profileData;
+  const { firstname, lastname, role, pronouns, about, image } = profileData;
 
   const [errors, setErrors] = useState({});
 
@@ -39,8 +42,8 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { firstname, lastname, role, pronouns, about, image } = data;
+          setProfileData({ firstname, lastname, role, pronouns, about, image });
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -63,8 +66,11 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("content", content);
+    formData.append("firstname", firstname);
+    formData.append("lasstname", lastname);
+    formData.append("role", role);
+    formData.append("pronouns", pronouns);
+    formData.append("about", about);
 
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
@@ -86,17 +92,77 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label>First name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="First name"
+          name="firstname"
+          value={firstname}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.firstname?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
+        <Form.Label>Last name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Last name"
+          name="lastname"
+          value={lastname}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.lastname?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
+        <Form.Label>Role</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Role"
+          name="role"
+          value={role}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.role?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
+        <Form.Label>Pronouns</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Pronouns"
+          name="pronouns"
+          value={pronouns}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.pronouns?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+      <Form.Group>
+        <Form.Label>About</Form.Label>
         <Form.Control
           as="textarea"
-          value={content}
+          value={about}
           onChange={handleChange}
-          name="content"
+          name="about"
           rows={7}
         />
       </Form.Group>
 
-      {errors?.content?.map((message, idx) => (
+      {errors?.about?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>

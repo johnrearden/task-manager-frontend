@@ -11,6 +11,7 @@ import TaskList from "./pages/tasks/TaskList";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ProfileList from "./pages/profiles/ProfileList";
 import ProfileDetail from "./pages/profiles/ProfileDetail";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -54,6 +55,11 @@ function App() {
           <Route exact path="/tasks/:id" render={() => <TaskDetail />} />
           <Route exact path="/team" render={() => <ProfileList />} />
           <Route exact path="/profiles/:id" render={() => <ProfileDetail />} />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEditForm />}
+          />
           <Route render={() => <h1>Oops! Page not found</h1>} />
         </Switch>
       </Container>
