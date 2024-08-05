@@ -23,6 +23,8 @@ const Task = (props) => {
     description,
     assignee,
     assignee_username,
+    assignee_firstname,
+    assignee_lastname,
     assignee_image,
     image,
     priority,
@@ -106,7 +108,13 @@ const Task = (props) => {
           {assignee ? (
             <Link to={`/profiles/${assignee}`}>
               <Avatar src={assignee_image} height={55} />
-              {assignee_username}
+              {/* show first name, last name or both if available
+                  otherwise, show username */}
+              {assignee_firstname
+                ? assignee_firstname + " " + assignee_lastname
+                : assignee_lastname
+                ? assignee_lastname
+                : assignee_username}
             </Link>
           ) : (
             <span>Not assigned</span>
@@ -126,29 +134,29 @@ const Task = (props) => {
             )}{" "}
           </div>
 
-           {/* deletion confirmation modal based on 
+          {/* deletion confirmation modal based on 
           https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
           <Modal
-          show={showDeleteModal}
-          onHide={() => setShowDeleteModal(false)}
-          centered={true}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Confirm Deletetion</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => setShowDeleteModal(false)}
-            >
-              Cancel
-            </Button>
-            <Button variant="danger" onClick={handleDelete}>
-              Delete
-            </Button>
-          </Modal.Footer>
-        </Modal>
+            show={showDeleteModal}
+            onHide={() => setShowDeleteModal(false)}
+            centered={true}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Deletetion</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </Button>
+              <Button variant="danger" onClick={handleDelete}>
+                Delete
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Media>
       </Card.Body>
 
