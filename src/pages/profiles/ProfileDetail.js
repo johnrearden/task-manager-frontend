@@ -19,8 +19,14 @@ import {
 } from "../../contexts/ProfileDataContext";
 import { Image } from "react-bootstrap";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+import Task from "../tasks/Task";
+import { fetchMoreData } from "../../utils/utils";
+import NoResults from "../../assets/no-results.png";
+
 function ProfileDetail() {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [profileTasks, setProfileTasks] = useState({ results: [] });
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const setProfileData = useSetProfileData();
@@ -31,14 +37,17 @@ function ProfileDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-        ]);
+        const [{ data: pageProfile }, { data: profileTasks }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/tasks/?owner__profile=${id}`),
+          ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setHasLoaded(true);
+        setProfileTasks(profileTasks);
       } catch (err) {
         console.log(err);
       }
@@ -88,8 +97,8 @@ function ProfileDetail() {
     </>
   );
 
-//   tasks assigned to viewed profile
-  const mainProfilePosts = (
+  //   tasks assigned to viewed profile
+  const mainProfileTasks = (
     <>
       <hr />
       <p className="text-center">
@@ -102,6 +111,28 @@ function ProfileDetail() {
           : profile?.owner}
       </p>
       <hr />
+      {profileTasks.results.length ? (
+        <InfiniteScroll
+          children={profileTasks.results.map((task) => (
+            <Task key={task.id} {...task} setTasks={setProfileTasks} />
+          ))}
+          dataLength={profileTasks.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profileTasks.next}
+          next={() => fetchMoreData(profileTasks, setProfileTasks)}
+        />
+      ) : (
+        <Asset
+          src={NoResults}
+          message={`There are no tasks assigned to ${
+            profile?.firstname
+              ? profile?.firstname
+              : profile?.lastname
+              ? profile?.lastname
+              : profile?.owner
+          }.`}
+        />
+      )}
     </>
   );
 
@@ -112,7 +143,7 @@ function ProfileDetail() {
           {hasLoaded ? (
             <>
               {mainProfile}
-              {mainProfilePosts}
+              {mainProfileTasks}
             </>
           ) : (
             <Asset spinner />
