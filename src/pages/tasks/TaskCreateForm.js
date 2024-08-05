@@ -146,7 +146,7 @@ function TaskCreateForm() {
           as="textarea"
           rows="6"
           placeholder="Detailed description of the task"
-          name="content"
+          name="description"
           value={description}
           onChange={handleChange}
         />
