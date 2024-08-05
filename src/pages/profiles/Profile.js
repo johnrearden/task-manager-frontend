@@ -26,7 +26,7 @@ const Profile = (props) => {
                   otherwise, show username */}
           <strong>
             {firstname
-              ? firstname + " " + profile.lastname
+              ? firstname + " " + lastname
               : lastname
               ? lastname
               : owner}
