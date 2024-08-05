@@ -67,7 +67,7 @@ const ProfileEditForm = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("firstname", firstname);
-    formData.append("lasstname", lastname);
+    formData.append("lastname", lastname);
     formData.append("role", role);
     formData.append("pronouns", pronouns);
     formData.append("about", about);
