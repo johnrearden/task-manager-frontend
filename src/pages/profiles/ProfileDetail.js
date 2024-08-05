@@ -23,6 +23,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Task from "../tasks/Task";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 function ProfileDetail() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -90,7 +91,7 @@ function ProfileDetail() {
         </Col>
         <Col lg={3} className="text-lg-right">
           {/* show edit placeholder if signed in user is owner of the profile */}
-          {currentUser && is_owner && <p>EDIT</p>}
+          {currentUser && is_owner && <ProfileEditDropdown id={profile?.id} />}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
