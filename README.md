@@ -118,6 +118,8 @@ The watch button is an eye icon and a toolip instruction is show when hovering o
 
 #### Security
 
+`npm audit fix` was run after every time a new package was installed. It is beyond the scope of the currect project to fix all dependency warnings, as these are typically handled by more senior developers or dedicated security engineers.
+
 ## Technologies used
 
 ### Languages used
