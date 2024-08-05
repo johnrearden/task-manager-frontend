@@ -12,7 +12,6 @@ import axios from "axios";
 // custom components
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
-
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -71,10 +70,19 @@ const NavBar = () => {
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar 
-          src={currentUser?.profile_image} 
-          text={currentUser?.username}
-          height={40} />
+        <Avatar
+          src={currentUser?.profile_image}
+          text={
+            // show first name, last name or both if available
+            // otherwise, show username
+            currentUser?.profile_firstname
+              ? currentUser?.profile_firstname + " " + currentUser?.profile_lastname
+              : currentUser?.profile_lastname
+              ? currentUser?.profile_lastname
+              : currentUser?.username
+          }
+          height={40}
+        />
       </NavLink>
     </>
   );
@@ -104,7 +112,9 @@ const NavBar = () => {
       className={styles.NavBar}
       expand="md"
       fixed="top"
-    >      <Container>
+    >
+      {" "}
+      <Container>
         <NavLink to="/">
           <Navbar.Brand>
             <img src={logo} alt="logo" height="45" />
@@ -118,7 +128,7 @@ const NavBar = () => {
           ref={ref}
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav"
-        />        
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
             <NavLink
