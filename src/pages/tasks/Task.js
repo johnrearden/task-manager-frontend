@@ -160,7 +160,7 @@ const Task = (props) => {
             {/* Show status in a human readable format.
           Even though status` is a str, === only works if this is
           explicitely specified, and == produces a warning*/}
-            <span>
+            <span className={`mb-1`}>
               {status === String("TO-DO")
                 ? "To Do"
                 : status === String("IN-PROGRESS")
@@ -172,7 +172,7 @@ const Task = (props) => {
             {/* Show priority in a human readable format.
             Even though status` is a str, === only works if this is
             explicitely specified, and == produces a warning*/}
-            <span>
+            <span className={`mt-1`}>
               {priority === String("LOW")
                 ? "Low Priority"
                 : priority === String("MED")
