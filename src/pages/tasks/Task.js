@@ -135,7 +135,19 @@ const Task = (props) => {
 
           {/* task status & priority */}
           <Col className={styles.CardHeaderText}>
-            <span>{status}</span>
+          {/* Show status in a human readable format.
+          Even though status` is a str, === only works if this is
+          explicitely specified, and == produces a warning*/}
+              <span>
+              {status === String("TO-DO")
+                ? "To Do"
+                : status === String("IN-PROGRESS")
+                ? "In Progress"
+                : status === String("DONE")
+                ? "Done"
+                : "no status defined"
+              }
+            </span>
             <span>Prio: {priority}</span>
           </Col>
 
