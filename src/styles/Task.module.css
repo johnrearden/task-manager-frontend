@@ -16,12 +16,13 @@
     font-size: xx-large;
   }
 
-  .CardHeaderAvatar,
+  .Avatar,
   .CardHeaderText{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
 
   .Eye {

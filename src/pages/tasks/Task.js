@@ -116,10 +116,7 @@ const Task = (props) => {
           <Col>
             {/* Display assignee image & name or "not assigned" */}
             {assignee ? (
-              <Link
-                to={`/profiles/${assignee}`}
-                className={styles.CardHeaderAvatar}
-              >
+              <Link to={`/profiles/${assignee}`} className={styles.Avatar}>
                 <Avatar src={assignee_image} height={55} />
                 {/* show first name, last name or both if available
                   otherwise, show username */}
@@ -159,31 +156,29 @@ const Task = (props) => {
           </Col>
         </Row>
 
-        <Media className="align-items-center justify-content-between">
-          {/* deletion confirmation modal based on 
+        {/* deletion confirmation modal based on 
           https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
-          <Modal
-            show={showDeleteModal}
-            onHide={() => setShowDeleteModal(false)}
-            centered={true}
-          >
-            <Modal.Header closeButton>
-              <Modal.Title>Confirm Deletetion</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
-            <Modal.Footer>
-              <Button
-                variant="secondary"
-                onClick={() => setShowDeleteModal(false)}
-              >
-                Cancel
-              </Button>
-              <Button variant="danger" onClick={handleDelete}>
-                Delete
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </Media>
+        <Modal
+          show={showDeleteModal}
+          onHide={() => setShowDeleteModal(false)}
+          centered={true}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm Deletetion</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowDeleteModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={handleDelete}>
+              Delete
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Card.Body>
 
       <Card.Body>
@@ -197,9 +192,9 @@ const Task = (props) => {
             <ListGroup.Item>Created on: {created_at}</ListGroup.Item>
           )}
           <ListGroupItem>
-            <div>
-              <Card.Text>Created by: </Card.Text>
-              <Link to={`/profiles/${owner_id}`}>
+            <Media>
+              Created by: 
+              <Link to={`/profiles/${owner_id}`} className={styles.Avatar}>
                 <Avatar src={owner_image} height={55} />
                 {/* show first name, last name or both if available
                   otherwise, show username */}
@@ -209,7 +204,7 @@ const Task = (props) => {
                   ? owner_lastname
                   : owner}
               </Link>
-            </div>
+            </Media>
           </ListGroupItem>
         </ListGroup>
 
