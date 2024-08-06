@@ -177,7 +177,9 @@ const Task = (props) => {
         <Row y-4>
           <Col>
             {title && (
-              <Card.Title className={styles.CardTitle}>{title}</Card.Title>
+              <Card.Title 
+              className={`my-3 ${styles.CardTitle}`}
+              >{title}</Card.Title>
             )}
             {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
           </Col>
