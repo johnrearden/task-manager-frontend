@@ -111,14 +111,36 @@ const Task = (props) => {
 
   return (
     <Card className={styles.Task}>
-      <Card.Header>
+      <Card.Header className={`
+        // set background color depending on task priority
+        ${ priority === String("LOW")
+            ? styles.DarkLowBg
+            : priority === String("MED")
+            ? styles.DarkMedBg
+            : priority === String("HIGH")
+            ? styles.DarkHighBg
+            : {}
+          }
+        `}>
         <Row>
           {/* empty col for balancing header content */}
           <Col className={`col-1 d-none s-d-block`}></Col>
           <Col>
             {/* Display assignee image & name or "not assigned" */}
             {assignee ? (
-              <Link to={`/profiles/${assignee}`} className={styles.Avatar}>
+              <Link to={`/profiles/${assignee}`} 
+                className={`${styles.Avatar}
+                // set background color depending on task priority
+                ${ priority === String("LOW")
+                  ? styles.DarkLowBg
+                  : priority === String("MED")
+                  ? styles.DarkMedBg
+                  : priority === String("HIGH")
+                  ? styles.DarkHighBg
+                  : {}
+                }
+              `}
+              >
                 <Avatar src={assignee_image} height={55} />
                 {/* show first name, last name or both if available
                   otherwise, show username */}
@@ -135,24 +157,46 @@ const Task = (props) => {
 
           {/* task status & priority */}
           <Col className={styles.CardHeaderText}>
-          {/* Show status in a human readable format.
+            {/* Show status in a human readable format.
           Even though status` is a str, === only works if this is
           explicitely specified, and == produces a warning*/}
-              <span>
+            <span>
               {status === String("TO-DO")
                 ? "To Do"
                 : status === String("IN-PROGRESS")
                 ? "In Progress"
                 : status === String("DONE")
                 ? "Done"
-                : "no status defined"
-              }
+                : "no status defined"}
             </span>
-            <span>Prio: {priority}</span>
+            {/* Show priority in a human readable format.
+            Even though status` is a str, === only works if this is
+            explicitely specified, and == produces a warning*/}
+            <span>
+              {priority === String("LOW")
+                ? "Low Priority"
+                : priority === String("MED")
+                ? "Med Priority"
+                : priority === String("HIGH")
+                ? "High Priority"
+                : "Priority not defined"}
+            </span>
           </Col>
 
           {/* edit/delete dropdown available on both TaskDetail & TaskList views */}
-          <Col className={`${styles.MoreDropdown} col-1`}>
+          <Col className={`
+            ${styles.MoreDropdown} 
+            col-1
+                    // set background color depending on task priority
+        ${ priority === String("LOW")
+            ? styles.DarkLowBg
+            : priority === String("MED")
+            ? styles.DarkMedBg
+            : priority === String("HIGH")
+            ? styles.DarkHighBg
+            : {}
+          }            
+            `}>
             {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
@@ -190,8 +234,20 @@ const Task = (props) => {
           <Col>
             {title && (
               <Card.Title 
-              className={`my-3 ${styles.CardTitle}`}
-              >{title}</Card.Title>
+                className={`my-3 
+                  ${styles.CardTitle}
+                  // set title color depending on task priority
+                  ${ priority === String("LOW")
+                      ? styles.DarkLowText
+                      : priority === String("MED")
+                      ? styles.DarkMedText
+                      : priority === String("HIGH")
+                      ? styles.DarkHighText
+                      : {}
+                  }`}  
+              >
+                {title}
+              </Card.Title>
             )}
             {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
           </Col>
@@ -201,46 +257,82 @@ const Task = (props) => {
       <Card.Body>
         <ListGroup variant="flush">
           {due_date && (
-            <ListGroup.Item className={`${styles.DateEyeContainer}`}>
+            <ListGroup.Item className={`${styles.DateEyeContainer}
+              // set background color depending on task priority
+              ${ priority === String("LOW")
+                ? styles.LightLowBg
+                : priority === String("MED")
+                ? styles.LightMedBg
+                : priority === String("HIGH")
+                ? styles.LightHighBg
+                : {}
+              }
+            `}>
               <Col className={`${styles.DateContainer}`}>
                 <span className={`mr-2`}>Due date:</span>
                 <span>{due_date}</span>
               </Col>
               {/* watch/unwatch functionality & watcher count */}
               <Col className={styles.EyeContainer}>
-              {watched_id ? (
-                <OverlayTrigger
-                  placement="top"
-                  // tooltip text not a mistake:
-                  // it will activate AFTER the onclick function is run
-                  overlay={<Tooltip>Unwatch task</Tooltip>}
-                >
-                  <span onClick={handleUnwatch}>
-                    <i className={`fa-solid fa-eye ${styles.Eye}`} />
-                  </span>
-                </OverlayTrigger>
-              ) : currentUser ? (
-                <OverlayTrigger
-                  placement="top"
-                  // tooltip text not a mistake:
-                  // it will activate AFTER the onclick function is run
-                  overlay={<Tooltip>Watch task</Tooltip>}
-                >
-                  <span onClick={handleWatch}>
-                    <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
-                  </span>
-                </OverlayTrigger>
-              ) : (
-                <OverlayTrigger
-                  placement="top"
-                  //   this might have to be changed/removed,
-                  // as only logged-in users will be able to see tasks
-                  overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
-                >
-                  <i className="fa-solid fa-eye" />
-                </OverlayTrigger>
-              )}
-              {watchers_count}
+                {watched_id ? (
+                  <OverlayTrigger
+                    placement="top"
+                    // tooltip text not a mistake:
+                    // it will activate AFTER the onclick function is run
+                    overlay={<Tooltip>Unwatch task</Tooltip>}
+                  >
+                    <span onClick={handleUnwatch}>
+                      <i className={`
+                        fa-solid fa-eye 
+                        // set color depending on task priority
+                        ${ priority === String("LOW")
+                            ? styles.EyeLow
+                            : priority === String("MED")
+                            ? styles.EyeMed
+                            : priority === String("HIGH")
+                            ? styles.Eye
+                            // default case has same color effects as HIGH
+                            : styles.Eye
+                          }
+                      `} 
+                    />
+                    </span>
+                  </OverlayTrigger>
+                ) : currentUser ? (
+                  <OverlayTrigger
+                    placement="top"
+                    // tooltip text not a mistake:
+                    // it will activate AFTER the onclick function is run
+                    overlay={<Tooltip>Watch task</Tooltip>}
+                  >
+                    <span onClick={handleWatch}>
+                      <i className={`
+                        fa-regular fa-eye 
+                        // set color depending on task priority
+                        ${ priority === String("LOW")
+                            ? styles.EyeOutlineLow
+                            : priority === String("MED")
+                            ? styles.EyeOutlineMed
+                            : priority === String("HIGH")
+                            ? styles.EyeOutline
+                            // default case has same color effects as HIGH
+                            : styles.EyeOutline
+                          }
+                        `} 
+                      />
+                    </span>
+                  </OverlayTrigger>
+                ) : (
+                  <OverlayTrigger
+                    placement="top"
+                    //   this might have to be changed/removed,
+                    // as only logged-in users will be able to see tasks
+                    overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
+                  >
+                    <i className="fa-solid fa-eye" />
+                  </OverlayTrigger>
+                )}
+                {watchers_count}
               </Col>
             </ListGroup.Item>
           )}

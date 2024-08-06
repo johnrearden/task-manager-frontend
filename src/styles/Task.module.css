@@ -1,3 +1,25 @@
+:root {
+  /* color variables */
+  /* high priority */
+  --very-dark-high: #531D04;
+  --dark-high: #D7410F;
+  --med-high: #FD7E14;
+  --light-high: #f7ddcf;
+   /* med priority */
+  --very-dark-med: #08374F;
+  --dark-med: #0F6895;
+  --med-med: #20A6E9;
+  --light-med: #BFE6F7;
+  /* low priority */
+  --very-dark-low: #084f37;
+  --dark-low: #1b871d;
+  --med-low: #7ef075;
+  --light-low: #ceedcc;
+  /* neutrals */
+  --light-neutral: #F9FAFC;
+  --white: #FFFFFF;
+}
+
 .Task {
     background-color: #ffffff;
     border: 1px solid #dadadf;
@@ -11,7 +33,6 @@
   }
 
   .CardTitle {
-    color: red;
     text-align: center;
     font-size: xx-large;
   }
@@ -35,7 +56,6 @@
   .DateEyeContainer {
     display: flex;
     justify-items: space-between;
-    background-color: antiquewhite;
   }
 
   .DateContainer {
@@ -50,16 +70,109 @@
     max-width: 5.5rem;
   }
 
+  /* color schemes based on task priority */
+
+  .VeryDarkHighText {
+    color: var(--very-dark-high);
+  }
+
+  .VeryDarkMedText {
+    color: var(--very-dark-med);
+  }
+
+  .VeryDarkLowText {
+    color: var(--very-dark-low);
+  }
+
+  .DarkHighText {
+    color: var(--dark-high);
+  }
+
+  .DarkMedText {
+    color: var(--dark-med);
+  }
+
+  .DarkLowText {
+    color: var(--dark-low);
+  }
+
+  .DarkHighBg {
+    background-color: var(--dark-high);
+    color: var(--white);
+    font-weight: bold;
+  }
+
+  .DarkMedhBg {
+    background-color: var(--dark-med);
+    color: var(--white);
+    font-weight: bold;
+  }
+
+  .DarkLowBg {
+    background-color: var(--dark-low);
+    color: var(--white);
+    font-weight: bold;
+  }
+
+  .LightHighBg {
+    background-color: var(--light-high);
+  }
+
+
+  .LightMedBg {
+    background-color: var(--light-med);
+  }
+
+  .LightLowBg {
+    background-color: var(--light-low);
+  }
+
+  .EyeLow {
+    color: var(--dark-low);
+  }
+
+  .EyeLow:hover {
+    color: var(--very-dark-low);
+  }
+
+  .EyeOutlineLow {
+    color: var(--very-dark-low);
+  }
+
+  .EyeOutlineLow:hover {
+    color: var(--dark-low);
+  }
+
+  .EyeMed {
+    color: var(--dark-med);
+  }
+
+  .EyeMed:hover {
+    color: var(--very-dark-med);
+  }
+
+  .EyeOutlineMed {
+    color: var(--very-dark-med);
+  }
+
+  .EyeOutlineMed:hover {
+    color: var(--dark-med);
+  }
+
   .Eye {
-    color: #f85032;
+    color: var(--dark-high);
   }
 
   .Eye:hover {
-    color: #2142b2;
+    color: var(--very-dark-high);
+  }
+
+  .EyeOutline {
+    color: var(--very-dark-high);
   }
 
   .EyeOutline:hover {
-    color: #f85032;
+    color: var(--dark-high);
   }
 
   /* very small screens */
