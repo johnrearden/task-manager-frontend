@@ -5,6 +5,9 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Tooltip from "react-bootstrap/Tooltip";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -37,7 +40,7 @@ const Task = (props) => {
     owner_image,
     watched_id,
     watchers_count,
-    taskDetail,
+    // taskDetail,
     setTasks,
   } = props;
 
@@ -106,7 +109,25 @@ const Task = (props) => {
 
   return (
     <Card className={styles.Task}>
+      <Card.Header></Card.Header>
       <Card.Body>
+        <Row y-4>
+          <Col ></Col>
+          <Col xs={10}>
+            {title && <Card.Title className={styles.CardTitle}>{title}</Card.Title>}
+            {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
+          </Col>
+          <Col>
+            {/* edit/delete dropdown available on both TaskDetail & TaskList views */}
+            {is_owner && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={() => setShowDeleteModal(true)}
+              />
+            )}{" "}
+          </Col>
+        </Row>
+
         <Media className="align-items-center justify-content-between">
           {/* Display assignee image & name or "not assigned" */}
           {assignee ? (
@@ -128,13 +149,6 @@ const Task = (props) => {
           </div>
           <div className="d-flex align-items-center">
             <span>Prio: {priority}</span>
-            {/* available on both TaskDetail & TaskList views */}
-            {is_owner && (
-              <MoreDropdown
-                handleEdit={handleEdit}
-                handleDelete={() => setShowDeleteModal(true)}
-              />
-            )}{" "}
           </div>
 
           {/* deletion confirmation modal based on 
@@ -164,8 +178,6 @@ const Task = (props) => {
       </Card.Body>
 
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-        Excerpt: {excerpt && <Card.Text>{excerpt}</Card.Text>}
         Due date:{due_date && <Card.Text>{due_date}</Card.Text>}
         {description && <Card.Text>{description}</Card.Text>}
         {updated_at && <Card.Text>Last updated on: {updated_at}</Card.Text>}

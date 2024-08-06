@@ -11,6 +11,12 @@
     margin: 0 0;
   }
 
+  .CardTitle {
+    color: red;
+    text-align: center;
+    font-size: xx-large;
+  }
+
   .Eye {
     color: #f85032;
   }
