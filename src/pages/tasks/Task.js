@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Tooltip from "react-bootstrap/Tooltip";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
 
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -15,6 +16,7 @@ import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Task.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import { ListGroupItem } from "react-bootstrap";
 
 const Task = (props) => {
   const {
@@ -112,33 +114,38 @@ const Task = (props) => {
       <Card.Header>
         <Row>
           <Col>
-        {/* Display assignee image & name or "not assigned" */}
-        {assignee ? (
-            <Link to={`/profiles/${assignee}`}className={styles.CardHeaderAvatar}>
-              <Avatar src={assignee_image} height={55} />
-              {/* show first name, last name or both if available
+            {/* Display assignee image & name or "not assigned" */}
+            {assignee ? (
+              <Link
+                to={`/profiles/${assignee}`}
+                className={styles.CardHeaderAvatar}
+              >
+                <Avatar src={assignee_image} height={55} />
+                {/* show first name, last name or both if available
                   otherwise, show username */}
-              {assignee_firstname
-                ? assignee_firstname + " " + assignee_lastname
-                : assignee_lastname
-                ? assignee_lastname
-                : assignee_username}
-            </Link>
-          ) : (
-            <span>Not assigned</span>
-          )}
+                {assignee_firstname
+                  ? assignee_firstname + " " + assignee_lastname
+                  : assignee_lastname
+                  ? assignee_lastname
+                  : assignee_username}
+              </Link>
+            ) : (
+              <span>Not assigned</span>
+            )}
           </Col>
           <Col className={styles.CardHeaderText}>
             <span>{status}</span>
             <span>Prio: {priority}</span>
           </Col>
-          </Row>
+        </Row>
       </Card.Header>
       <Card.Body>
         <Row y-4>
-          <Col ></Col>
+          <Col></Col>
           <Col xs={10}>
-            {title && <Card.Title className={styles.CardTitle}>{title}</Card.Title>}
+            {title && (
+              <Card.Title className={styles.CardTitle}>{title}</Card.Title>
+            )}
             {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
           </Col>
           <Col>
@@ -153,7 +160,6 @@ const Task = (props) => {
         </Row>
 
         <Media className="align-items-center justify-content-between">
-
           {/* deletion confirmation modal based on 
           https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
           <Modal
@@ -181,23 +187,32 @@ const Task = (props) => {
       </Card.Body>
 
       <Card.Body>
-        Due date:{due_date && <Card.Text>{due_date}</Card.Text>}
-        {description && <Card.Text>{description}</Card.Text>}
-        {updated_at && <Card.Text>Last updated on: {updated_at}</Card.Text>}
-        {created_at && <Card.Text>Created on: {created_at}</Card.Text>}
-        <div>
-          <Card.Text>Created by: </Card.Text>
-          <Link to={`/profiles/${owner_id}`}>
-            <Avatar src={owner_image} height={55} />
-            {/* show first name, last name or both if available
+        <ListGroup variant="flush">
+          {due_date && <ListGroup.Item>Due date: {due_date}</ListGroup.Item>}
+          {description && <ListGroup.Item>{description}</ListGroup.Item>}
+          {updated_at && (
+            <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>
+          )}
+          {created_at && (
+            <ListGroup.Item>Created on: {created_at}</ListGroup.Item>
+          )}
+          <ListGroupItem>
+            <div>
+              <Card.Text>Created by: </Card.Text>
+              <Link to={`/profiles/${owner_id}`}>
+                <Avatar src={owner_image} height={55} />
+                {/* show first name, last name or both if available
                   otherwise, show username */}
-            {owner_firstname
-              ? owner_firstname + " " + owner_lastname
-              : owner_lastname
-              ? owner_lastname
-              : owner}
-          </Link>
-        </div>
+                {owner_firstname
+                  ? owner_firstname + " " + owner_lastname
+                  : owner_lastname
+                  ? owner_lastname
+                  : owner}
+              </Link>
+            </div>
+          </ListGroupItem>
+        </ListGroup>
+
         <Link to={`/tasks/${id}`}>
           <Card.Img src={image} alt={title} />
         </Link>
