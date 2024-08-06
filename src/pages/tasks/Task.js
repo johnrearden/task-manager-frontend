@@ -148,19 +148,7 @@ const Task = (props) => {
               />
             )}{" "}
           </Col>
-        </Row>
-      </Card.Header>
-      <Card.Body>
-        <Row y-4>
-          <Col>
-            {title && (
-              <Card.Title className={styles.CardTitle}>{title}</Card.Title>
-            )}
-            {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
-          </Col>
-        </Row>
-
-        {/* deletion confirmation modal based on 
+               {/* deletion confirmation modal based on 
           https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
         <Modal
           show={showDeleteModal}
@@ -183,6 +171,18 @@ const Task = (props) => {
             </Button>
           </Modal.Footer>
         </Modal>
+        </Row>
+      </Card.Header>
+      <Card.Body>
+        <Row y-4>
+          <Col>
+            {title && (
+              <Card.Title className={styles.CardTitle}>{title}</Card.Title>
+            )}
+            {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
+          </Col>
+        </Row>
+
       </Card.Body>
 
       <Card.Body>
