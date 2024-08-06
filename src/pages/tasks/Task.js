@@ -110,8 +110,11 @@ const Task = (props) => {
   };
 
   return (
-    <Card className={styles.Task}>
+    <Card className={`${styles.Task}
+      ${styles.Rounded}
+    `}>
       <Card.Header className={`
+        ${styles.Rounded}
         // set background color depending on task priority
         ${ priority === String("LOW")
             ? styles.DarkLowBg
@@ -256,18 +259,20 @@ const Task = (props) => {
 
       <Card.Body>
         <ListGroup variant="flush">
-            <ListGroup.Item className={`
-              ${styles.DateEyeContainer}
-              // set background color depending on task priority
-              ${ priority === String("LOW")
-                ? styles.LightLowBg
-                : priority === String("MED")
-                ? styles.LightMedBg
-                : priority === String("HIGH")
-                ? styles.LightHighBg
-                : {}
-              }
-            `}>
+            <ListGroup.Item 
+              className={`
+                ${styles.Rounded}
+                ${styles.DateEyeContainer}
+                // set background color depending on task priority
+                ${ priority === String("LOW")
+                  ? styles.LightLowBg
+                  : priority === String("MED")
+                  ? styles.LightMedBg
+                  : priority === String("HIGH")
+                  ? styles.LightHighBg
+                  : {}
+                }
+              `}>
               <Col className={`${styles.DateContainer}`}>
                 <span className={`mr-2`}>Due date:</span>
                 <span>

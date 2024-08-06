@@ -20,10 +20,13 @@
   --white: #FFFFFF;
 }
 
+.Rounded {
+  border-radius: 20px;
+}
+
 .Task {
     background-color: #ffffff;
     border: 1px solid #dadadf;
-    border-radius: 2px;
     margin-bottom: 16px;
   }
 
@@ -187,3 +190,4 @@
       flex-direction: column;
     }
   }
+  
