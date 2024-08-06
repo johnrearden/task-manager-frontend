@@ -32,6 +32,8 @@ const Task = (props) => {
     status,
     due_date,
     owner_id,
+    owner_firstname,
+    owner_lastname,
     owner_image,
     watched_id,
     watchers_count,
@@ -172,7 +174,13 @@ const Task = (props) => {
           <Card.Text>Created by: </Card.Text>
           <Link to={`/profiles/${owner_id}`}>
             <Avatar src={owner_image} height={55} />
-            {owner}
+            {/* show first name, last name or both if available
+                  otherwise, show username */}
+            {owner_firstname
+              ? owner_firstname + " " + owner_lastname
+              : owner_lastname
+              ? owner_lastname
+              : owner}
           </Link>
         </div>
         <Link to={`/tasks/${id}`}>
