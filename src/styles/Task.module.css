@@ -127,6 +127,8 @@
     background-color: var(--light-low);
   }
 
+  /* watch/unwatch icon priority colors */
+
   .EyeLow {
     color: var(--dark-low);
   }
