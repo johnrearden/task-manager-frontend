@@ -16,6 +16,7 @@ import Task from "./Task";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import ProfileList from "../profiles/ProfileList";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function TaskList({ message, filter = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
@@ -23,6 +24,8 @@ function TaskList({ message, filter = "" }) {
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState("");
+
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -43,7 +46,7 @@ function TaskList({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
