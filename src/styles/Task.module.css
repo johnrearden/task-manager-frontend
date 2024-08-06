@@ -17,6 +17,14 @@
     font-size: xx-large;
   }
 
+  .CardHeaderAvatar,
+  .CardHeaderText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   .Eye {
     color: #f85032;
   }

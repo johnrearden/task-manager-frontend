@@ -109,7 +109,31 @@ const Task = (props) => {
 
   return (
     <Card className={styles.Task}>
-      <Card.Header></Card.Header>
+      <Card.Header>
+        <Row>
+          <Col>
+        {/* Display assignee image & name or "not assigned" */}
+        {assignee ? (
+            <Link to={`/profiles/${assignee}`}className={styles.CardHeaderAvatar}>
+              <Avatar src={assignee_image} height={55} />
+              {/* show first name, last name or both if available
+                  otherwise, show username */}
+              {assignee_firstname
+                ? assignee_firstname + " " + assignee_lastname
+                : assignee_lastname
+                ? assignee_lastname
+                : assignee_username}
+            </Link>
+          ) : (
+            <span>Not assigned</span>
+          )}
+          </Col>
+          <Col className={styles.CardHeaderText}>
+            <span>{status}</span>
+            <span>Prio: {priority}</span>
+          </Col>
+          </Row>
+      </Card.Header>
       <Card.Body>
         <Row y-4>
           <Col ></Col>
@@ -129,27 +153,6 @@ const Task = (props) => {
         </Row>
 
         <Media className="align-items-center justify-content-between">
-          {/* Display assignee image & name or "not assigned" */}
-          {assignee ? (
-            <Link to={`/profiles/${assignee}`}>
-              <Avatar src={assignee_image} height={55} />
-              {/* show first name, last name or both if available
-                  otherwise, show username */}
-              {assignee_firstname
-                ? assignee_firstname + " " + assignee_lastname
-                : assignee_lastname
-                ? assignee_lastname
-                : assignee_username}
-            </Link>
-          ) : (
-            <span>Not assigned</span>
-          )}
-          <div className="d-flex align-items-center">
-            <span>{status}</span>
-          </div>
-          <div className="d-flex align-items-center">
-            <span>Prio: {priority}</span>
-          </div>
 
           {/* deletion confirmation modal based on 
           https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
