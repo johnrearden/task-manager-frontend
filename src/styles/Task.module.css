@@ -53,9 +53,13 @@
     justify-content: center;
   }
 
+  /* contains the due date & watch/unwatch icon*/
   .DateEyeContainer {
     display: flex;
     justify-items: space-between;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    background-color: var(--light-neutral);
   }
 
   .DateContainer {

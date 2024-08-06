@@ -256,8 +256,8 @@ const Task = (props) => {
 
       <Card.Body>
         <ListGroup variant="flush">
-          {due_date && (
-            <ListGroup.Item className={`${styles.DateEyeContainer}
+            <ListGroup.Item className={`
+              ${styles.DateEyeContainer}
               // set background color depending on task priority
               ${ priority === String("LOW")
                 ? styles.LightLowBg
@@ -270,7 +270,11 @@ const Task = (props) => {
             `}>
               <Col className={`${styles.DateContainer}`}>
                 <span className={`mr-2`}>Due date:</span>
-                <span>{due_date}</span>
+                <span>
+                  {due_date
+                  ? due_date
+                  : "not defined"}
+                </span>
               </Col>
               {/* watch/unwatch functionality & watcher count */}
               <Col className={styles.EyeContainer}>
@@ -335,7 +339,6 @@ const Task = (props) => {
                 {watchers_count}
               </Col>
             </ListGroup.Item>
-          )}
           {description && <ListGroup.Item>{description}</ListGroup.Item>}
           {updated_at && (
             <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>
