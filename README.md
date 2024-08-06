@@ -70,6 +70,21 @@ Tasks should remain intact even when their creator (owner) or assignee are delet
 
 ### Navigation bar
 
+On small screen sizes, the Navbar includes an extra link to the [profile list page](#profile-list).
+
+### Teammates component
+
+This appears on mid and larger viewports, and shows the list of teammates in descending order.
+
+Users' names are shown conditionally: the first and/or last name is show if it is available,
+otherwise, the username is displayed.
+
+Clicking on a profile avatar or name leads to the relevant [profile detail page](#profile-detail-page).
+Clicking on the heading **Teammates** leads to the [profile list page](#profile-list).
+
+On small screen sizes, the [Navbar](#navigation-bar) includes an extra link to the [profile list page](#profile-list).
+
+
 ### Footer
 
 #### Home page
