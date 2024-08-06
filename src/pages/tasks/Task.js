@@ -113,6 +113,8 @@ const Task = (props) => {
     <Card className={styles.Task}>
       <Card.Header>
         <Row>
+          {/* empty col for balancing header content */}
+          <Col className={`col-1 d-none s-d-block`}></Col>
           <Col>
             {/* Display assignee image & name or "not assigned" */}
             {assignee ? (
@@ -130,29 +132,31 @@ const Task = (props) => {
               <span>Not assigned</span>
             )}
           </Col>
+
+          {/* task status & priority */}
           <Col className={styles.CardHeaderText}>
             <span>{status}</span>
             <span>Prio: {priority}</span>
           </Col>
-        </Row>
-      </Card.Header>
-      <Card.Body>
-        <Row y-4>
-          <Col></Col>
-          <Col xs={10}>
-            {title && (
-              <Card.Title className={styles.CardTitle}>{title}</Card.Title>
-            )}
-            {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
-          </Col>
-          <Col>
-            {/* edit/delete dropdown available on both TaskDetail & TaskList views */}
+
+          {/* edit/delete dropdown available on both TaskDetail & TaskList views */}
+          <Col className={`${styles.MoreDropdown} col-1`}>
             {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={() => setShowDeleteModal(true)}
               />
             )}{" "}
+          </Col>
+        </Row>
+      </Card.Header>
+      <Card.Body>
+        <Row y-4>
+          <Col>
+            {title && (
+              <Card.Title className={styles.CardTitle}>{title}</Card.Title>
+            )}
+            {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
           </Col>
         </Row>
 
@@ -193,7 +197,7 @@ const Task = (props) => {
           )}
           <ListGroupItem>
             <Media>
-              Created by: 
+              Created by:
               <Link to={`/profiles/${owner_id}`} className={styles.Avatar}>
                 <Avatar src={owner_image} height={55} />
                 {/* show first name, last name or both if available
