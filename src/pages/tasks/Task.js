@@ -123,7 +123,6 @@ const Task = (props) => {
           )}
           <div className="d-flex align-items-center">
             <span>{status}</span>
-            {is_owner && taskDetail && "..."}
           </div>
           <div className="d-flex align-items-center">
             <span>Prio: {priority}</span>
