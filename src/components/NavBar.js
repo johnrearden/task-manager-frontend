@@ -60,8 +60,8 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         exact
-        // only show this on small screens
-        className={`${styles.NavLink} d-md-none`}
+        // only show this on small & med screens
+        className={`${styles.NavLink} d-lg-none`}
         activeClassName={styles.Active}
         to="/team"
       >
@@ -137,7 +137,7 @@ const NavBar = () => {
           <Nav className="ml-auto text-left">
             <NavLink
               exact
-              className={styles.NavLink}
+              className={`${styles.NavLink} d-md-none d-lg-block`}
               activeClassName={styles.Active}
               to="/"
             >
