@@ -40,6 +40,7 @@
 
   .DateContainer {
     display: flex;
+    justify-content:flex-start;
     align-items: center;
   }
 
@@ -59,4 +60,11 @@
 
   .EyeOutline:hover {
     color: #f85032;
+  }
+
+  /* very small screens */
+  @media screen and (max-width: 374px) {
+    .DateContainer {
+      flex-direction: column;
+    }
   }

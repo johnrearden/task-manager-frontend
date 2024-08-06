@@ -191,7 +191,8 @@ const Task = (props) => {
           {due_date && (
             <ListGroup.Item className={`${styles.DateEyeContainer}`}>
               <Col className={`${styles.DateContainer}`}>
-                Due date: {due_date}
+                <span className={`mr-2`}>Due date:</span>
+                <span>{due_date}</span>
               </Col>
               {/* watch/unwatch functionality & watcher count */}
               <Col className={styles.EyeContainer}>
