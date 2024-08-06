@@ -32,6 +32,23 @@
     justify-content: center;
   }
 
+  .DateEyeContainer {
+    display: flex;
+    justify-items: space-between;
+    background-color: antiquewhite;
+  }
+
+  .DateContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .EyeContainer {
+
+    justify-self: flex-end;
+    max-width: 5.5rem;
+  }
+
   .Eye {
     color: #f85032;
   }

@@ -148,29 +148,29 @@ const Task = (props) => {
               />
             )}{" "}
           </Col>
-               {/* deletion confirmation modal based on 
+          {/* deletion confirmation modal based on 
           https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react */}
-        <Modal
-          show={showDeleteModal}
-          onHide={() => setShowDeleteModal(false)}
-          centered={true}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Confirm Deletetion</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => setShowDeleteModal(false)}
-            >
-              Cancel
-            </Button>
-            <Button variant="danger" onClick={handleDelete}>
-              Delete
-            </Button>
-          </Modal.Footer>
-        </Modal>
+          <Modal
+            show={showDeleteModal}
+            onHide={() => setShowDeleteModal(false)}
+            centered={true}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Confirm Deletetion</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to delete this task?</Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </Button>
+              <Button variant="danger" onClick={handleDelete}>
+                Delete
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Row>
       </Card.Header>
       <Card.Body>
@@ -182,12 +182,53 @@ const Task = (props) => {
             {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
           </Col>
         </Row>
-
       </Card.Body>
 
       <Card.Body>
         <ListGroup variant="flush">
-          {due_date && <ListGroup.Item>Due date: {due_date}</ListGroup.Item>}
+          {due_date && (
+            <ListGroup.Item className={`${styles.DateEyeContainer}`}>
+              <Col className={`${styles.DateContainer}`}>
+                Due date: {due_date}
+              </Col>
+              {/* watch/unwatch functionality & watcher count */}
+              <Col className={styles.EyeContainer}>
+              {watched_id ? (
+                <OverlayTrigger
+                  placement="top"
+                  // tooltip text not a mistake:
+                  // it will activate AFTER the onclick function is run
+                  overlay={<Tooltip>Unwatch task</Tooltip>}
+                >
+                  <span onClick={handleUnwatch}>
+                    <i className={`fa-solid fa-eye ${styles.Eye}`} />
+                  </span>
+                </OverlayTrigger>
+              ) : currentUser ? (
+                <OverlayTrigger
+                  placement="top"
+                  // tooltip text not a mistake:
+                  // it will activate AFTER the onclick function is run
+                  overlay={<Tooltip>Watch task</Tooltip>}
+                >
+                  <span onClick={handleWatch}>
+                    <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
+                  </span>
+                </OverlayTrigger>
+              ) : (
+                <OverlayTrigger
+                  placement="top"
+                  //   this might have to be changed/removed,
+                  // as only logged-in users will be able to see tasks
+                  overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
+                >
+                  <i className="fa-solid fa-eye" />
+                </OverlayTrigger>
+              )}
+              {watchers_count}
+              </Col>
+            </ListGroup.Item>
+          )}
           {description && <ListGroup.Item>{description}</ListGroup.Item>}
           {updated_at && (
             <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>
@@ -216,39 +257,6 @@ const Task = (props) => {
           <Card.Img src={image} alt={title} />
         </Link>
         <div className={styles.TaskBar}>
-          {watched_id ? (
-            <OverlayTrigger
-              placement="top"
-              // tooltip text not a mistake:
-              // it will activate AFTER the onclick function is run
-              overlay={<Tooltip>Unwatch task</Tooltip>}
-            >
-              <span onClick={handleUnwatch}>
-                <i className={`fa-solid fa-eye ${styles.Eye}`} />
-              </span>
-            </OverlayTrigger>
-          ) : currentUser ? (
-            <OverlayTrigger
-              placement="top"
-              // tooltip text not a mistake:
-              // it will activate AFTER the onclick function is run
-              overlay={<Tooltip>Watch task</Tooltip>}
-            >
-              <span onClick={handleWatch}>
-                <i className={`fa-solid fa-eye ${styles.EyeOutline}`} />
-              </span>
-            </OverlayTrigger>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              //   this might have to be changed/removed,
-              // as only logged-in users will be able to see tasks
-              overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
-            >
-              <i className="fa-solid fa-eye" />
-            </OverlayTrigger>
-          )}
-          {watchers_count}
           {/* <Link to={`/tasks/${id}`}>
           <i className="far fa-comments" />
         </Link>
