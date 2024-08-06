@@ -51,7 +51,8 @@ const Task = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/tasks/${id}/`);
-      history.goBack();
+      // redirect to home page after deleting a task
+      history.push(`/`);
     } catch (err) {
       console.log(err);
       setShowDeleteModal(false);
