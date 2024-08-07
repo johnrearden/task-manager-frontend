@@ -185,13 +185,24 @@ function TaskCreateForm() {
         </Col>
 
         <Col md={8} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
+          <Container className={`
+              ${appStyles.Content}
+              ${appStyles.Rounded}
+            `}
+          >
+              {textFields}
+          </Container>
           <Row className="my-4">{buttons}</Row>
         </Col>
 
         <Col className="py-2 p-0 p-md-2" md={4}>
           <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            className={`
+              ${appStyles.Content} 
+              ${styles.Container} 
+              ${appStyles.Rounded}
+              d-flex flex-column justify-content-center
+            `}
           >
             <div className="d-md-none">{textFields}</div>
 
@@ -293,7 +304,12 @@ function TaskCreateForm() {
           {/* </Col>
         <Col className="py-2 p-0 p-md-2" md={3} lg={4}> */}
           <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            className={`
+              ${appStyles.Content} 
+              ${styles.Container}
+              ${appStyles.Rounded}
+              d-flex flex-column justify-content-center mt-3
+            `}
           >
             <Form.Group className="text-center">
               {image ? (
