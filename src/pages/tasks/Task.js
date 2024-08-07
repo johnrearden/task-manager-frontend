@@ -419,10 +419,6 @@ const Task = (props) => {
 
           <Card.Img src={image} alt={title} />
           <div className={styles.TaskBar}>
-            {/* <Link to={`/tasks/${id}`}>
-          <i className="far fa-comments" />
-        </Link>
-        {comments_count} */}
           </div>
         </Card.Body>
       )}
