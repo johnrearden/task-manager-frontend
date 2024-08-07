@@ -16,6 +16,8 @@ import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 import Asset from "../../components/Asset";
 import Image from "react-bootstrap/Image";
 
@@ -24,7 +26,10 @@ function TaskCreateForm() {
   const [errors, setErrors] = useState({});
   const [profiles, setProfiles] = useState({});
 
-  // fetch all profiles from API (based on handleMount in CurrentUserContext)
+  const currentUser = useCurrentUser();
+
+  // fetch all profiles from API
+  // {logic based on handleMount in CurrentUserContext)
   const fetchProfiles = async () => {
     try {
       const { data } = await axiosReq.get(`/profiles/`);
@@ -182,6 +187,11 @@ function TaskCreateForm() {
                     : profile.lastname ?
                     profile.lastname
                     : profile.owner
+                  }
+                  {/* add "me" to the current user's name in the dropdown */}
+                  {currentUser?.username === profile.owner
+                    ?" (me)"
+                    :""
                   }
                 </option>;
               })}
