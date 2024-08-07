@@ -79,9 +79,18 @@
   .DateEyeContainer {
     display: flex;
     justify-items: space-between;
-    width: 100%;
     padding: 0px 0.4rem;
     background-color: var(--light-neutral);
+  }
+  /* full width */
+  .DateEyeWide {
+    width: 100%;
+  }
+
+  /* narrower (used on TaskDetail page) */
+  .DateEyeNarrow {
+    width: 90%;
+    margin: 0px 5%;
   }
 
   .DateContainer {

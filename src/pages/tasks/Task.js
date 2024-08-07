@@ -299,8 +299,17 @@ const Task = (props) => {
 
       <div
         className={`
-                ${styles.LittleRoundedBottom}
                 ${styles.DateEyeContainer}
+                // make it narrower on TaskDetail page
+                ${taskDetail
+                  ? styles.DateEyeNarrow
+                  : styles.DateEyeContainer
+                }
+                // only round top on TaskDetail page
+                ${taskDetail
+                  ? styles.LittleRounded
+                  : styles.LittleRoundedBottom
+                }
                 // set background color depending on task priority
                 ${
                   priority === String("LOW")
