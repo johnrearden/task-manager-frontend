@@ -60,9 +60,10 @@ const UsernameForm = () => {
             <Form.Group>
               <Form.Label>Change username</Form.Label>
               <Form.Control
-                placeholder="username"
+                placeholder="username (required)"
                 type="text"
                 value={username}
+                required
                 onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>

@@ -60,9 +60,10 @@ const UserPasswordForm = () => {
             <Form.Group>
               <Form.Label>New password</Form.Label>
               <Form.Control
-                placeholder="new password"
+                placeholder="new password (required)"
                 type="password"
                 value={new_password1}
+                required
                 onChange={handleChange}
                 name="new_password1"
               />
@@ -75,9 +76,10 @@ const UserPasswordForm = () => {
             <Form.Group>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
-                placeholder="confirm new password"
+                placeholder="confirm new password (required)"
                 type="password"
                 value={new_password2}
+                required
                 onChange={handleChange}
                 name="new_password2"
               />
