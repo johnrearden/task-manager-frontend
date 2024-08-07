@@ -60,6 +60,7 @@ const SignUpForm = () => {
                 type="text"
                 placeholder="username"
                 name="username"
+                required
                 value={username}
                 onChange={handleChange}
               />
@@ -78,6 +79,7 @@ const SignUpForm = () => {
                 placeholder="password"
                 name="password1"
                 value={password1}
+                required
                 onChange={handleChange}
               />
             </Form.Group>
@@ -95,6 +97,7 @@ const SignUpForm = () => {
                 placeholder="confirm password"
                 name="password2"
                 value={password2}
+                required
                 onChange={handleChange}
               />
             </Form.Group>
