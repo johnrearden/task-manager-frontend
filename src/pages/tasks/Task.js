@@ -152,9 +152,12 @@ const Task = (props) => {
               `}
               >
                 <Avatar src={assignee_image} height={55} />
-                {/* show first name, last name or both if available
+                {/* render "me" if logged-in user is viewing their own profile
+                  else show first name, last name or both if available
                   otherwise, show username */}
-                {assignee_firstname
+                {currentUser?.username === assignee_username
+                  ? "me"
+                  :assignee_firstname
                   ? assignee_firstname + " " + assignee_lastname
                   : assignee_lastname
                   ? assignee_lastname
@@ -397,9 +400,12 @@ const Task = (props) => {
                 Created by:
                 <Link to={`/profiles/${owner_id}`} className={styles.Avatar}>
                   <Avatar src={owner_image} height={55} />
-                  {/* show first name, last name or both if available
+                  {/* render "me" if logged-in user is viewing their own profile
+                  else show first name, last name or both if available
                   otherwise, show username */}
-                  {owner_firstname
+                  {currentUser?.username === owner
+                    ? "me"
+                    :owner_firstname
                     ? owner_firstname + " " + owner_lastname
                     : owner_lastname
                     ? owner_lastname
