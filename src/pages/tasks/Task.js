@@ -264,6 +264,31 @@ const Task = (props) => {
               </Card.Title>
             )}
             {excerpt && <Card.Subtitle>{excerpt}</Card.Subtitle>}
+
+            {/* render link to Task Detail page in TaskList */}
+            {!taskDetail && (
+              <Row>
+                <Link
+                  to={`/tasks/${id}/`}
+                  className={`
+                mt-4
+                stretched-link
+                ${styles.DetailLink}
+                // set title color depending on task priority
+                ${
+                  priority === String("LOW")
+                    ? styles.EyeLow
+                    : priority === String("MED")
+                    ? styles.EyeMed
+                    : priority === String("HIGH")
+                    ? styles.Eye
+                    : {}
+                }`}
+                >
+                  Click/tap to view task details
+                </Link>
+              </Row>
+            )}
           </Col>
         </Row>
       </Card.Body>

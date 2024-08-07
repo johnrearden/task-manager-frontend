@@ -48,6 +48,11 @@
     font-size: xx-large;
   }
 
+  .DetailLink {
+    text-align: center;
+    width: 100%;
+  }
+
   .Avatar,
   .CardHeaderText{
     display: flex;
