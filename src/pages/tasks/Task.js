@@ -117,7 +117,7 @@ const Task = (props) => {
     >
       <Card.Header
         className={`
-          ${styles.Rounded}
+          ${styles.RoundedTop}
           // set background color depending on task priority
           ${
             priority === String("LOW")

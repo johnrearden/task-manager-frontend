@@ -25,6 +25,10 @@
   border-radius: 20px;
 }
 
+.RoundedTop {
+  border-radius: 20px 20px 0px 0px !important;
+}
+
 /* rounded corners on smaller objects */
 .LittleRounded {
   border-radius: 10px;
@@ -122,21 +126,18 @@
     background-color: var(--dark-high);
     color: var(--white);
     font-weight: bold;
-    border-radius: 20px;
   }
 
   .DarkMedhBg {
     background-color: var(--dark-med);
     color: var(--white);
     font-weight: bold;
-    border-radius: 20px;
   }
 
   .DarkLowBg {
     background-color: var(--dark-low);
     color: var(--white);
     font-weight: bold;
-    border-radius: 20px;
   }
 
   .LightHighBg {
