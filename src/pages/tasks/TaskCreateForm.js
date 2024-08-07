@@ -334,7 +334,7 @@ function TaskCreateForm() {
                 >
                   <Asset
                     src={Upload}
-                    message="Click or tap to upload an image"
+                    message="Click or tap to upload an image (required)"
                   />
                 </Form.Label>
               )}
