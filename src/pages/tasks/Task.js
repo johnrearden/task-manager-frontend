@@ -42,7 +42,7 @@ const Task = (props) => {
     owner_image,
     watched_id,
     watchers_count,
-    // taskDetail,
+    taskDetail,
     setTasks,
   } = props;
 
@@ -355,43 +355,44 @@ const Task = (props) => {
           {watchers_count}
         </Col>
       </div>
-
-      <Card.Body>
-        <ListGroup variant="flush">
-          {description && <ListGroup.Item>{description}</ListGroup.Item>}
-          {updated_at && (
-            <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>
-          )}
-          {created_at && (
-            <ListGroup.Item>Created on: {created_at}</ListGroup.Item>
-          )}
-          <ListGroupItem>
-            <Media>
-              Created by:
-              <Link to={`/profiles/${owner_id}`} className={styles.Avatar}>
-                <Avatar src={owner_image} height={55} />
-                {/* show first name, last name or both if available
+      {taskDetail && (
+        <Card.Body>
+          <ListGroup variant="flush">
+            {description && <ListGroup.Item>{description}</ListGroup.Item>}
+            {updated_at && (
+              <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>
+            )}
+            {created_at && (
+              <ListGroup.Item>Created on: {created_at}</ListGroup.Item>
+            )}
+            <ListGroupItem>
+              <Media>
+                Created by:
+                <Link to={`/profiles/${owner_id}`} className={styles.Avatar}>
+                  <Avatar src={owner_image} height={55} />
+                  {/* show first name, last name or both if available
                   otherwise, show username */}
-                {owner_firstname
-                  ? owner_firstname + " " + owner_lastname
-                  : owner_lastname
-                  ? owner_lastname
-                  : owner}
-              </Link>
-            </Media>
-          </ListGroupItem>
-        </ListGroup>
+                  {owner_firstname
+                    ? owner_firstname + " " + owner_lastname
+                    : owner_lastname
+                    ? owner_lastname
+                    : owner}
+                </Link>
+              </Media>
+            </ListGroupItem>
+          </ListGroup>
 
-        <Link to={`/tasks/${id}`}>
-          <Card.Img src={image} alt={title} />
-        </Link>
-        <div className={styles.TaskBar}>
-          {/* <Link to={`/tasks/${id}`}>
+          <Link to={`/tasks/${id}`}>
+            <Card.Img src={image} alt={title} />
+          </Link>
+          <div className={styles.TaskBar}>
+            {/* <Link to={`/tasks/${id}`}>
           <i className="far fa-comments" />
         </Link>
         {comments_count} */}
-        </div>
-      </Card.Body>
+          </div>
+        </Card.Body>
+      )}
     </Card>
   );
 };
