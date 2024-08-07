@@ -137,7 +137,8 @@ const Task = (props) => {
             {assignee ? (
               <Link
                 to={`/profiles/${assignee}`}
-                className={`${styles.Avatar}
+                className={`
+                  ${styles.AvatarColumn}
                   // set background color depending on task priority
                   ${
                     priority === String("LOW")

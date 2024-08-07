@@ -59,7 +59,14 @@
     width: 100%;
   }
 
-  .Avatar,
+  .Avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .AvatarColumn,
   .CardHeaderText{
     display: flex;
     flex-direction: column;
