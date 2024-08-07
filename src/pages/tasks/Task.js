@@ -417,9 +417,7 @@ const Task = (props) => {
             </ListGroupItem>
           </ListGroup>
 
-          <Link to={`/tasks/${id}`}>
-            <Card.Img src={image} alt={title} />
-          </Link>
+          <Card.Img src={image} alt={title} />
           <div className={styles.TaskBar}>
             {/* <Link to={`/tasks/${id}`}>
           <i className="far fa-comments" />
