@@ -355,6 +355,8 @@ const Task = (props) => {
           {watchers_count}
         </Col>
       </div>
+
+      {/* only show extended info on Task Detail page */}
       {taskDetail && (
         <Card.Body>
           <ListGroup variant="flush">
