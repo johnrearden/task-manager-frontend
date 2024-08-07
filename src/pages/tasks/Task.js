@@ -168,7 +168,7 @@ const Task = (props) => {
             )}
           </Col>
 
-          {/* task status & priority */}
+          {/* task assignee, status & priority */}
           <Col className={styles.CardHeaderText}>
             {/* Show status in a human readable format.
             Even though status` is a str, === only works if this is
