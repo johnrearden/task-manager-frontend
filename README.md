@@ -203,6 +203,8 @@ Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments
 
 ### Related advice
 
+Following a [suggestion](https://code-institute-room.slack.com/archives/C02MTH5MBDG/p1723026165340779?thread_ts=1722951810.045149&cid=C02MTH5MBDG) by [Kelly Hutchison](https://github.com/quiltingcode), I added Frontend validation by adding the `required` prop to the form fields in the SignInForm ([Issue](https://github.com/blahosyl/task-manager-frontend/issues/20)). I then extended this to required fields in all forms in the project [#96](https://github.com/blahosyl/task-manager-frontend/issues/96).
+
 ### Study/lookup sources
 
 - [React Bootstrap documentation](https://react-bootstrap-v4.netlify.app/)
@@ -214,7 +216,6 @@ Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments
 - [use template literals for multiple `className` props](https://stackoverflow.com/a/39053038)
 - [CSS `border` shorthand](https://www.w3schools.com/css/css_border_shorthand.asp)
 - [CSS `border-radius` shorthand](https://www.w3schools.com/cssref/css3_pr_border-radius.php)
-
 
 ### Text
 
