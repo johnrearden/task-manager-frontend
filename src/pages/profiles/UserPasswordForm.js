@@ -63,7 +63,6 @@ const UserPasswordForm = () => {
                 placeholder="new password (required)"
                 type="password"
                 value={new_password1}
-                required
                 onChange={handleChange}
                 name="new_password1"
               />
@@ -79,7 +78,6 @@ const UserPasswordForm = () => {
                 placeholder="confirm new password (required)"
                 type="password"
                 value={new_password2}
-                required
                 onChange={handleChange}
                 name="new_password2"
               />
