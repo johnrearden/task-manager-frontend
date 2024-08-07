@@ -130,9 +130,10 @@ function TaskCreateForm() {
         <Form.Label>Title</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Title"
+          placeholder="Title (required)"
           name="title"
           value={title}
+          required
           onChange={handleChange}
         />
       </Form.Group>
@@ -146,7 +147,7 @@ function TaskCreateForm() {
         <Form.Label>Excerpt</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Short summary of the task (optional)"
+          placeholder="Short summary of the task"
           name="excerpt"
           value={excerpt}
           onChange={handleChange}
