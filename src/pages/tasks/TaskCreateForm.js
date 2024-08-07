@@ -43,7 +43,6 @@ function TaskCreateForm() {
     fetchProfiles();
   }, []);
 
-
   const [taskData, setTaskData] = useState({
     title: "",
     excerpt: "",
@@ -111,6 +110,20 @@ function TaskCreateForm() {
     }
   };
 
+  const buttons = (
+    <div className="my-2 mx-auto text-center">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        onClick={() => history.goBack()}
+      >
+        cancel
+      </Button>
+      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+        create
+      </Button>
+    </div>
+  );
+
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -161,93 +174,67 @@ function TaskCreateForm() {
           {message}
         </Alert>
       ))}
-
-      <Form.Group controlId="assignee">
-        <Form.Label>Assigned to</Form.Label>
-        <Form.Control
-          as="select"
-          name="assignee"
-          value={assignee}
-          onChange={handleChange}
-        >
-          {/* profile list retrieved dynamically */}
-          <option>none</option>
-          {/* if profies are retrieved */}
-          {/* conditional added at the suggestion of tutor Oisin */}
-          {profiles.length && (
-            <>
-              {profiles.map((profile) => {
-                return <option 
-                  key={profile.id} 
-                  value={profile.id}>
-                  {/* show first name, last name or both is available
-                  otherwise, show username */}
-                  {profile.firstname ? 
-                    profile.firstname+" "+profile.lastname 
-                    : profile.lastname ?
-                    profile.lastname
-                    : profile.owner
-                  }
-                  {/* add "me" to the current user's name in the dropdown */}
-                  {currentUser?.username === profile.owner
-                    ?" (me)"
-                    :""
-                  }
-                </option>;
-              })}
-            </>
-          )}
-        </Form.Control>
-      </Form.Group>
-      {errors?.assignee?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
-      <Form.Group controlId="priority">
-        <Form.Label>Priority</Form.Label>
-        <Form.Control
-          as="select"
-          name="priority"
-          value={priority}
-          onChange={handleChange}
-        >
-          {/* value props have to match PRIORITY_OPTIONS in task/models.py */}
-          <option value="LOW">Low</option>
-          <option value="MEDIUM">Medium</option>
-          <option value="HIGH">High</option>
-        </Form.Control>
-      </Form.Group>
-      {errors?.priority?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
-      </Button>
     </div>
   );
 
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col md={9} lg={8} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
+        <Col md={8} className="d-block d-md-none">
+          {buttons}
         </Col>
 
-        <Col className="py-2 p-0 p-md-2" md={3} lg={4}>
+        <Col md={8} className="d-none d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
+          <Row className="my-4">{buttons}</Row>
+        </Col>
+
+        <Col className="py-2 p-0 p-md-2" md={4}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
+            <div className="d-md-none">{textFields}</div>
+
+            <Form.Group controlId="assignee">
+              <Form.Label>Assigned to</Form.Label>
+              <Form.Control
+                as="select"
+                name="assignee"
+                value={assignee}
+                onChange={handleChange}
+              >
+                {/* profile list retrieved dynamically */}
+                <option>none</option>
+                {/* if profies are retrieved */}
+                {/* conditional added at the suggestion of tutor Oisin */}
+                {profiles.length && (
+                  <>
+                    {profiles.map((profile) => {
+                      return (
+                        <option key={profile.id} value={profile.id}>
+                          {/* show first name, last name or both is available
+                  otherwise, show username */}
+                          {profile.firstname
+                            ? profile.firstname + " " + profile.lastname
+                            : profile.lastname
+                            ? profile.lastname
+                            : profile.owner}
+                          {/* add "me" to the current user's name in the dropdown */}
+                          {currentUser?.username === profile.owner
+                            ? " (me)"
+                            : ""}
+                        </option>
+                      );
+                    })}
+                  </>
+                )}
+              </Form.Control>
+            </Form.Group>
+            {errors?.assignee?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
             <Form.Group controlId="status">
               <Form.Label>Status</Form.Label>
               <Form.Control
@@ -268,6 +255,26 @@ function TaskCreateForm() {
               </Alert>
             ))}
 
+            <Form.Group controlId="priority">
+              <Form.Label>Priority</Form.Label>
+              <Form.Control
+                as="select"
+                name="priority"
+                value={priority}
+                onChange={handleChange}
+              >
+                {/* value props have to match PRIORITY_OPTIONS in task/models.py */}
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+              </Form.Control>
+            </Form.Group>
+            {errors?.priority?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
             <Form.Group controlId="due_date">
               <Form.Label>Due date</Form.Label>
               <Form.Control
@@ -282,7 +289,12 @@ function TaskCreateForm() {
                 {message}
               </Alert>
             ))}
-
+          </Container>
+          {/* </Col>
+        <Col className="py-2 p-0 p-md-2" md={3} lg={4}> */}
+          <Container
+            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+          >
             <Form.Group className="text-center">
               {image ? (
                 <>
@@ -322,7 +334,6 @@ function TaskCreateForm() {
                 {message}
               </Alert>
             ))}
-            <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
       </Row>
