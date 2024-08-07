@@ -20,10 +20,12 @@
   --white: #FFFFFF;
 }
 
+/* rounded corners on bigger objects */
 .Rounded {
   border-radius: 20px;
 }
 
+/* rounded corners on smaller objects */
 .LittleRounded {
   border-radius: 10px;
 }

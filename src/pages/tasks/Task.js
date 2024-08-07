@@ -117,17 +117,17 @@ const Task = (props) => {
     >
       <Card.Header
         className={`
-        ${styles.Rounded}
-        // set background color depending on task priority
-        ${
-          priority === String("LOW")
-            ? styles.DarkLowBg
-            : priority === String("MED")
-            ? styles.DarkMedBg
-            : priority === String("HIGH")
-            ? styles.DarkHighBg
-            : {}
-        }
+          ${styles.Rounded}
+          // set background color depending on task priority
+          ${
+            priority === String("LOW")
+              ? styles.DarkLowBg
+              : priority === String("MED")
+              ? styles.DarkMedBg
+              : priority === String("HIGH")
+              ? styles.DarkHighBg
+              : {}
+          }
         `}
       >
         <Row>
@@ -139,17 +139,17 @@ const Task = (props) => {
               <Link
                 to={`/profiles/${assignee}`}
                 className={`${styles.Avatar}
-                // set background color depending on task priority
-                ${
-                  priority === String("LOW")
-                    ? styles.DarkLowBg
-                    : priority === String("MED")
-                    ? styles.DarkMedBg
-                    : priority === String("HIGH")
-                    ? styles.DarkHighBg
-                    : {}
-                }
-              `}
+                  // set background color depending on task priority
+                  ${
+                    priority === String("LOW")
+                      ? styles.DarkLowBg
+                      : priority === String("MED")
+                      ? styles.DarkMedBg
+                      : priority === String("HIGH")
+                      ? styles.DarkHighBg
+                      : {}
+                  }
+               `}
               >
                 <Avatar src={assignee_image} height={55} />
                 {/* render "me" if logged-in user is viewing their own profile
@@ -171,8 +171,8 @@ const Task = (props) => {
           {/* task status & priority */}
           <Col className={styles.CardHeaderText}>
             {/* Show status in a human readable format.
-          Even though status` is a str, === only works if this is
-          explicitely specified, and == produces a warning*/}
+            Even though status` is a str, === only works if this is
+            explicitely specified, and == produces a warning*/}
             <span className={`mb-1`}>
               {status === String("TO-DO")
                 ? "To Do"
@@ -201,18 +201,19 @@ const Task = (props) => {
             className={`
             ${styles.MoreDropdown} 
             col-1
-                    // set background color depending on task priority
-        ${
-          priority === String("LOW")
-            ? styles.DarkLowBg
-            : priority === String("MED")
-            ? styles.DarkMedBg
-            : priority === String("HIGH")
-            ? styles.DarkHighBg
-            : {}
-        }            
+              // set background color depending on task priority
+              ${
+                priority === String("LOW")
+                  ? styles.DarkLowBg
+                  : priority === String("MED")
+                  ? styles.DarkMedBg
+                  : priority === String("HIGH")
+                  ? styles.DarkHighBg
+                  : {}
+              }            
             `}
           >
+            {/* show the edit/delete dropdown if the logged-in user is the owner */}
             {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
@@ -328,19 +329,19 @@ const Task = (props) => {
               <span onClick={handleUnwatch}>
                 <i
                   className={`
-                        fa-solid fa-eye 
-                        // set color depending on task priority
-                        ${
-                          priority === String("LOW")
-                            ? styles.EyeLow
-                            : priority === String("MED")
-                            ? styles.EyeMed
-                            : priority === String("HIGH")
-                            ? styles.Eye
-                            : // default case has same color effects as HIGH
-                              styles.Eye
-                        }
-                      `}
+                    fa-solid fa-eye 
+                    // set color depending on task priority
+                    ${
+                      priority === String("LOW")
+                        ? styles.EyeLow
+                        : priority === String("MED")
+                        ? styles.EyeMed
+                        : priority === String("HIGH")
+                        ? styles.Eye
+                        : // default case has same color effects as HIGH
+                          styles.Eye
+                    }
+                  `}
                 />
               </span>
             </OverlayTrigger>
@@ -354,19 +355,19 @@ const Task = (props) => {
               <span onClick={handleWatch}>
                 <i
                   className={`
-                        fa-regular fa-eye 
-                        // set color depending on task priority
-                        ${
-                          priority === String("LOW")
-                            ? styles.EyeOutlineLow
-                            : priority === String("MED")
-                            ? styles.EyeOutlineMed
-                            : priority === String("HIGH")
-                            ? styles.EyeOutline
-                            : // default case has same color effects as HIGH
-                              styles.EyeOutline
-                        }
-                        `}
+                    fa-regular fa-eye 
+                    // set color depending on task priority
+                    ${
+                      priority === String("LOW")
+                        ? styles.EyeOutlineLow
+                        : priority === String("MED")
+                        ? styles.EyeOutlineMed
+                        : priority === String("HIGH")
+                        ? styles.EyeOutline
+                        : // default case has same color effects as HIGH
+                          styles.EyeOutline
+                    }
+                  `}
                 />
               </span>
             </OverlayTrigger>
@@ -409,7 +410,8 @@ const Task = (props) => {
                     ? owner_firstname + " " + owner_lastname
                     : owner_lastname
                     ? owner_lastname
-                    : owner}
+                    : owner
+                  }
                 </Link>
               </Media>
             </ListGroupItem>
