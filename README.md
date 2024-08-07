@@ -101,11 +101,45 @@ The Profile ID is sent to the API. Since a profile is automatically created when
 
 #### Task list
 
+The task list features a more compact version of the task cards, with only the following information shown:
+
+- assignee
+- priority
+- status
+- title
+- excerpt
+- due date
+- watch/unwatch icon
+
+The card body can be clicked to go to the [Task Detail](#task-detail-page) page.
+This link is not stretched to the whole card, because the card header contains a link to the [assigned user's profile](#profile-detail-page),
+and the bottom part of the card contains the [watch/unwatch icon](#watchunwatch-function).
+
+The Color scheme of the card changes based on the priority of the task:
+
+- low
+- med
+- high
+- no priority
+
 ##### Filtering
 
 ##### Searching
 
 #### Task detail page
+
+The card header contains an avatar with a link to the [assigned user's profile](#profile-detail-page),
+the due date / watch box contains the [watch/unwatch icon](#watchunwatch-function),
+and the bottom part of the card displays the avatar of the tasks's owner (creator) with a link to their [profile](#profile-detail-page).
+
+XXXX Which fields are shown with placeholders, which fields aren't 
+
+The Color scheme of the card changes based on the priority of the task:
+
+- low
+- med
+- high
+- no priority
 
 #### Watch/unwatch function
 
