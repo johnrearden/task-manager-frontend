@@ -110,37 +110,44 @@ const Task = (props) => {
   };
 
   return (
-    <Card className={`${styles.Task}
+    <Card
+      className={`${styles.Task}
       ${styles.Rounded}
-    `}>
-      <Card.Header className={`
+    `}
+    >
+      <Card.Header
+        className={`
         ${styles.Rounded}
         // set background color depending on task priority
-        ${ priority === String("LOW")
+        ${
+          priority === String("LOW")
             ? styles.DarkLowBg
             : priority === String("MED")
             ? styles.DarkMedBg
             : priority === String("HIGH")
             ? styles.DarkHighBg
             : {}
-          }
-        `}>
+        }
+        `}
+      >
         <Row>
           {/* empty col for balancing header content */}
           <Col className={`col-1 d-none s-d-block`}></Col>
           <Col>
             {/* Display assignee image & name or "not assigned" */}
             {assignee ? (
-              <Link to={`/profiles/${assignee}`} 
+              <Link
+                to={`/profiles/${assignee}`}
                 className={`${styles.Avatar}
                 // set background color depending on task priority
-                ${ priority === String("LOW")
-                  ? styles.DarkLowBg
-                  : priority === String("MED")
-                  ? styles.DarkMedBg
-                  : priority === String("HIGH")
-                  ? styles.DarkHighBg
-                  : {}
+                ${
+                  priority === String("LOW")
+                    ? styles.DarkLowBg
+                    : priority === String("MED")
+                    ? styles.DarkMedBg
+                    : priority === String("HIGH")
+                    ? styles.DarkHighBg
+                    : {}
                 }
               `}
               >
@@ -187,19 +194,22 @@ const Task = (props) => {
           </Col>
 
           {/* edit/delete dropdown available on both TaskDetail & TaskList views */}
-          <Col className={`
+          <Col
+            className={`
             ${styles.MoreDropdown} 
             col-1
                     // set background color depending on task priority
-        ${ priority === String("LOW")
+        ${
+          priority === String("LOW")
             ? styles.DarkLowBg
             : priority === String("MED")
             ? styles.DarkMedBg
             : priority === String("HIGH")
             ? styles.DarkHighBg
             : {}
-          }            
-            `}>
+        }            
+            `}
+          >
             {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
@@ -236,18 +246,19 @@ const Task = (props) => {
         <Row y-4>
           <Col>
             {title && (
-              <Card.Title 
+              <Card.Title
                 className={`my-3 
                   ${styles.CardTitle}
                   // set title color depending on task priority
-                  ${ priority === String("LOW")
+                  ${
+                    priority === String("LOW")
                       ? styles.DarkLowText
                       : priority === String("MED")
                       ? styles.DarkMedText
                       : priority === String("HIGH")
                       ? styles.DarkHighText
                       : {}
-                  }`}  
+                  }`}
               >
                 {title}
               </Card.Title>
@@ -257,93 +268,96 @@ const Task = (props) => {
         </Row>
       </Card.Body>
 
-      <Card.Body>
-        <ListGroup variant="flush">
-            <ListGroup.Item 
-              className={`
-                ${styles.Rounded}
+      <div
+        className={`
+                ${styles.LittleRoundedBottom}
                 ${styles.DateEyeContainer}
                 // set background color depending on task priority
-                ${ priority === String("LOW")
-                  ? styles.LightLowBg
-                  : priority === String("MED")
-                  ? styles.LightMedBg
-                  : priority === String("HIGH")
-                  ? styles.LightHighBg
-                  : {}
+                ${
+                  priority === String("LOW")
+                    ? styles.LightLowBg
+                    : priority === String("MED")
+                    ? styles.LightMedBg
+                    : priority === String("HIGH")
+                    ? styles.LightHighBg
+                    : {}
                 }
-              `}>
-              <Col className={`${styles.DateContainer}`}>
-                <span className={`mr-2`}>Due date:</span>
-                <span>
-                  {due_date
-                  ? due_date
-                  : "not defined"}
-                </span>
-              </Col>
-              {/* watch/unwatch functionality & watcher count */}
-              <Col className={styles.EyeContainer}>
-                {watched_id ? (
-                  <OverlayTrigger
-                    placement="top"
-                    // tooltip text not a mistake:
-                    // it will activate AFTER the onclick function is run
-                    overlay={<Tooltip>Unwatch task</Tooltip>}
-                  >
-                    <span onClick={handleUnwatch}>
-                      <i className={`
+              `}
+      >
+        <Col className={`${styles.DateContainer}`}>
+          <span className={`mr-2`}>Due date:</span>
+          <span>{due_date ? due_date : "not defined"}</span>
+        </Col>
+        {/* watch/unwatch functionality & watcher count */}
+        <Col className={styles.EyeContainer}>
+          {watched_id ? (
+            <OverlayTrigger
+              placement="top"
+              // tooltip text not a mistake:
+              // it will activate AFTER the onclick function is run
+              overlay={<Tooltip>Unwatch task</Tooltip>}
+            >
+              <span onClick={handleUnwatch}>
+                <i
+                  className={`
                         fa-solid fa-eye 
                         // set color depending on task priority
-                        ${ priority === String("LOW")
+                        ${
+                          priority === String("LOW")
                             ? styles.EyeLow
                             : priority === String("MED")
                             ? styles.EyeMed
                             : priority === String("HIGH")
                             ? styles.Eye
-                            // default case has same color effects as HIGH
-                            : styles.Eye
-                          }
-                      `} 
-                    />
-                    </span>
-                  </OverlayTrigger>
-                ) : currentUser ? (
-                  <OverlayTrigger
-                    placement="top"
-                    // tooltip text not a mistake:
-                    // it will activate AFTER the onclick function is run
-                    overlay={<Tooltip>Watch task</Tooltip>}
-                  >
-                    <span onClick={handleWatch}>
-                      <i className={`
+                            : // default case has same color effects as HIGH
+                              styles.Eye
+                        }
+                      `}
+                />
+              </span>
+            </OverlayTrigger>
+          ) : currentUser ? (
+            <OverlayTrigger
+              placement="top"
+              // tooltip text not a mistake:
+              // it will activate AFTER the onclick function is run
+              overlay={<Tooltip>Watch task</Tooltip>}
+            >
+              <span onClick={handleWatch}>
+                <i
+                  className={`
                         fa-regular fa-eye 
                         // set color depending on task priority
-                        ${ priority === String("LOW")
+                        ${
+                          priority === String("LOW")
                             ? styles.EyeOutlineLow
                             : priority === String("MED")
                             ? styles.EyeOutlineMed
                             : priority === String("HIGH")
                             ? styles.EyeOutline
-                            // default case has same color effects as HIGH
-                            : styles.EyeOutline
-                          }
-                        `} 
-                      />
-                    </span>
-                  </OverlayTrigger>
-                ) : (
-                  <OverlayTrigger
-                    placement="top"
-                    //   this might have to be changed/removed,
-                    // as only logged-in users will be able to see tasks
-                    overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
-                  >
-                    <i className="fa-solid fa-eye" />
-                  </OverlayTrigger>
-                )}
-                {watchers_count}
-              </Col>
-            </ListGroup.Item>
+                            : // default case has same color effects as HIGH
+                              styles.EyeOutline
+                        }
+                        `}
+                />
+              </span>
+            </OverlayTrigger>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              //   this might have to be changed/removed,
+              // as only logged-in users will be able to see tasks
+              overlay={<Tooltip>Log in to follow tasks!</Tooltip>}
+            >
+              <i className="fa-solid fa-eye" />
+            </OverlayTrigger>
+          )}
+          {watchers_count}
+        </Col>
+      </div>
+
+      <Card.Body>
+        <ListGroup variant="flush">
           {description && <ListGroup.Item>{description}</ListGroup.Item>}
           {updated_at && (
             <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>

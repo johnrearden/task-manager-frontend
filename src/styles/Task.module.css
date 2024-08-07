@@ -24,6 +24,14 @@
   border-radius: 20px;
 }
 
+.LittleRounded {
+  border-radius: 10px;
+}
+
+.LittleRoundedBottom {
+  border-radius: 0px 0px 10px 10px;
+}
+
 .Task {
     background-color: #ffffff;
     border: 1px solid #dadadf;
@@ -60,8 +68,8 @@
   .DateEyeContainer {
     display: flex;
     justify-items: space-between;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    width: 100%;
+    padding: 0px 0.4rem;
     background-color: var(--light-neutral);
   }
 
@@ -107,18 +115,21 @@
     background-color: var(--dark-high);
     color: var(--white);
     font-weight: bold;
+    border-radius: 20px;
   }
 
   .DarkMedhBg {
     background-color: var(--dark-med);
     color: var(--white);
     font-weight: bold;
+    border-radius: 20px;
   }
 
   .DarkLowBg {
     background-color: var(--dark-low);
     color: var(--white);
     font-weight: bold;
+    border-radius: 20px;
   }
 
   .LightHighBg {
