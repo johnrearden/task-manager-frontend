@@ -63,7 +63,7 @@ function SignInForm() {
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Username"
+                placeholder="username"
                 name="username"
                 required
                 className={styles.Input}
@@ -81,7 +81,7 @@ function SignInForm() {
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="password"
                 name="password"
                 required
                 className={styles.Input}
