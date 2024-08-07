@@ -14,6 +14,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Task.module.css";
+import appStyles from "../../App.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { ListGroupItem } from "react-bootstrap";
 
@@ -111,12 +112,12 @@ const Task = (props) => {
   return (
     <Card
       className={`${styles.Task}
-      ${styles.Rounded}
+      ${appStyles.Rounded}
     `}
     >
       <Card.Header
         className={`
-          ${styles.RoundedTop}
+          ${appStyles.RoundedTop}
           // set background color depending on task priority
           ${
             priority === String("LOW")
@@ -307,8 +308,8 @@ const Task = (props) => {
                 }
                 // only round top on TaskDetail page
                 ${taskDetail
-                  ? styles.LittleRounded
-                  : styles.LittleRoundedBottom
+                  ? appStyles.LittleRounded
+                  : appStyles.LittleRoundedBottom
                 }
                 // set background color depending on task priority
                 ${

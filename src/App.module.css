@@ -85,3 +85,16 @@ figure {
 .Rounded {
   border-radius: 20px;
 }
+
+.RoundedTop {
+  border-radius: 20px 20px 0px 0px !important;
+}
+
+/* rounded corners on smaller objects */
+.LittleRounded {
+  border-radius: 10px;
+}
+
+.LittleRoundedBottom {
+  border-radius: 0px 0px 10px 10px;
+}
