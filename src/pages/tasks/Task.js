@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -406,8 +405,8 @@ const Task = (props) => {
               <ListGroup.Item>Created on: {created_at}</ListGroup.Item>
             )}
             <ListGroupItem>
-              <Media>
-                Created by:
+              <Row>
+                <Col className={styles.CreatedBy}>Created by:
                 <Link to={`/profiles/${owner_id}`} className={styles.Avatar}>
                   <Avatar src={owner_image} height={55} />
                   {/* render "me" if logged-in user is viewing their own profile
@@ -422,7 +421,8 @@ const Task = (props) => {
                     : owner
                   }
                 </Link>
-              </Media>
+                </Col>
+              </Row>
             </ListGroupItem>
           </ListGroup>
 

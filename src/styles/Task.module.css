@@ -68,6 +68,12 @@
     text-align: center;
   }
 
+  .CreatedBy {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   .MoreDropdown{
     display: flex;
     flex-direction: column;
