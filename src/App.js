@@ -15,6 +15,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import NotFound from "./components/NotFound";
+import TaskEditForm from "./pages/tasks/TaskEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -56,6 +57,11 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
           <Route exact path="/tasks/:id" render={() => <TaskDetail />} />
+          <Route
+            exact
+            path="/tasks/:id/edit"
+            render={() => <TaskEditForm />}
+          />
           <Route exact path="/team" render={() => <ProfileList />} />
           <Route exact path="/profiles/:id" render={() => <ProfileDetail />} />
           <Route
