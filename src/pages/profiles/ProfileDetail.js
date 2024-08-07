@@ -75,6 +75,10 @@ function ProfileDetail() {
               : profile?.lastname
               ? profile?.lastname
               : profile?.owner}
+              {/* render " (me)" if logged-in user is viewing their own profile */}
+              {currentUser?.username === profile?.owner
+                ? " (me)"
+                : ""}
           </h3>
           {/* show role, pronouns & about info if available */}
           <Row className="justify-content-center no-gutters">
@@ -103,9 +107,12 @@ function ProfileDetail() {
     <>
       <hr />
       <p className="text-center">
-        {profile?.tasks_count} tasks assigned to
-        {/* render firstname if available, elif lastname, else username */}
-        {profile?.firstname
+        {profile?.tasks_count} tasks assigned to {" "}
+        {/* render "me" if logged-in user is viewing their own profile,
+        else render firstname if available, elif lastname, else username */}
+        {currentUser?.username === profile?.owner
+        ? "me"
+        : profile?.firstname
           ? profile?.firstname
           : profile?.lastname
           ? profile?.lastname
