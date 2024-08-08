@@ -428,9 +428,11 @@ const Task = (props) => {
             </ListGroupItem>
           </ListGroup>
 
-          <Card.Img src={image} alt={title} />
+          {image && (
+          <Card.Img src={image} alt={title} />)}
           <div className={styles.TaskBar}>
           </div>
+          
         </Card.Body>
       )}
     </Card>
