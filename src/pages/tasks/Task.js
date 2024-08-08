@@ -404,10 +404,10 @@ const Task = (props) => {
           <ListGroup variant="flush">
             {description && <ListGroup.Item>{description}</ListGroup.Item>}
             {updated_at && (
-              <ListGroup.Item>Last updated on: {updated_at}</ListGroup.Item>
+              <ListGroup.Item>Last updated on: {dayjs(updated_at).format('ddd | D MMM YYYY')}</ListGroup.Item>
             )}
             {created_at && (
-              <ListGroup.Item>Created on: {created_at}</ListGroup.Item>
+              <ListGroup.Item>Created on: {dayjs(created_at).format('ddd | D MMM YYYY')}</ListGroup.Item>
             )}
             <ListGroupItem>
               <Row>
