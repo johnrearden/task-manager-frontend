@@ -48,6 +48,16 @@ Tasks should remain intact even when their creator (owner) or assignee are delet
 
 #### UX Improvements
 
+##### Conditionally rendered names
+
+To facilitate legibility, user's names are rendered conditionally depending on whether a `firstname` and `lastname` is filled in in their profile (the `username` is always present).
+
+1. show first and last name if both are available
+2. show first or last name if either are available
+3. show username if neither are available
+
+In some cases, 1. is shortened to only show the first name even if a last name is available.
+
 ##### Tasks without an image
 
 The Moments project that this app is based on requires an image to be added to every task created. 
@@ -163,6 +173,14 @@ The watch button is an eye icon and a toolip instruction is show when hovering o
 #### Profile list
 
 #### Profile detail page
+
+This page shows a user's profile information and [tasks assigned to them](#task-list).
+
+For logged-in users, this shows all profile fields including empty ones.
+In addition, the conditionally rendered user name has the suffix "(me)" 
+to indicate the user is viewing their own profile.
+
+For all other users, only filled-in fields and the [conditially rendered name](#conditionally-rendered-names) is shown.
 
 ### Access management
 
