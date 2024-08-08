@@ -16,6 +16,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import NotFound from "./components/NotFound";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
+import TaskKanban from "./pages/tasks/TaskKanban";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -31,6 +32,13 @@ function App() {
             path="/"
             render={() => (
               <TaskList message="No results found. Adjust the search keyword." />
+            )}
+          />
+           <Route
+            exact
+            path="/kanban"
+            render={() => (
+              <TaskKanban message="No results found. Adjust the search keyword." />
             )}
           />
           <Route
