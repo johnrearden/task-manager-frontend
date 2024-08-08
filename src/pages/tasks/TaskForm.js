@@ -20,7 +20,10 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import Asset from "../../components/Asset";
 import Image from "react-bootstrap/Image";
-function TaskForm() {
+function TaskForm(props) {
+
+    const {editForm} = props;
+    
     useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [profiles, setProfiles] = useState({});
@@ -119,7 +122,7 @@ function TaskForm() {
           cancel
         </Button>
         <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-          create
+          {editForm ? "save" : "create"}
         </Button>
       </div>
     );
