@@ -132,7 +132,8 @@ function TaskForm(props) {
       formData.append("title", title);
       formData.append("excerpt", excerpt);
       formData.append("description", description);
-      assignee && formData.append("assignee", assignee);
+      // solution suggested by tutor Roo: specify "" as a valid option for the field
+      formData.append("assignee", assignee || "");
       formData.append("priority", priority);
       formData.append("status", status);
       due_date && formData.append("due_date", due_date);
