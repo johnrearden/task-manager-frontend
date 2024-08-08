@@ -24,7 +24,7 @@ const ProfileList = () => {
           <>
             <Link className="align-self-center" to={`/team`}>
               <h3>
-                <i class="fa-solid fa-users-line"></i>Teammates
+                <i className="fa-solid fa-users-line"></i>Teammates
               </h3>
             </Link>
             {/* list of users excluding the logged-in user */}

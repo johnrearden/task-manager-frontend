@@ -37,7 +37,7 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/tasks/create"
     >
-      <i class="fa-solid fa-plus"></i>New task
+      <i className="fa-solid fa-plus"></i>New task
     </NavLink>
   );
   const loggedInIcons = (
@@ -48,7 +48,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/watched"
       >
-        <i class="fa-solid fa-eye"></i>Watched
+        <i className="fa-solid fa-eye"></i>Watched
       </NavLink>
       <NavLink
         exact
@@ -56,7 +56,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/assigned"
       >
-        <i class="fa-solid fa-list-check"></i>Assigned to me
+        <i className="fa-solid fa-list-check"></i>Assigned to me
       </NavLink>
       <NavLink
         exact
@@ -65,7 +65,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/team"
       >
-        <i class="fa-solid fa-users-line"></i>Teammates
+        <i className="fa-solid fa-users-line"></i>Teammates
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <i className="fas fa-sign-out-alt"></i>Sign out
@@ -141,7 +141,7 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/"
             >
-              <i class="fa-solid fa-house"></i>Home
+              <i className="fa-solid fa-house"></i>Home
             </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
