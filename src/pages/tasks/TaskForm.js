@@ -337,7 +337,7 @@ function TaskForm(props) {
                 >
                   <Asset
                     src={Upload}
-                    message="Click or tap to upload an image (required)"
+                    message="Click or tap to upload an image"
                   />
                 </Form.Label>
               )}
