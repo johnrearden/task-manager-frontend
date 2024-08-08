@@ -12,7 +12,7 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/TaskCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
@@ -23,7 +23,7 @@ import Image from "react-bootstrap/Image";
 function TaskForm(props) {
 
     const {editForm} = props;
-    
+
     useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
     const [profiles, setProfiles] = useState({});
@@ -69,8 +69,44 @@ function TaskForm(props) {
   
     const imageInput = useRef(null);
     const history = useHistory();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+        if (editForm) {
+      try {
+        const { data } = await axiosReq.get(`/tasks/${id}/`);
+        const { title,
+            excerpt,
+            description,
+            assignee,
+            priority,
+            status,
+            due_date,
+            image,
+            is_owner } = data;
+
+        is_owner ? setTaskData({ title,
+            excerpt,
+            description,
+            assignee,
+            priority,
+            status,
+            due_date,
+            image,
+         }) 
+         : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    };
+
+    handleMount();
+  }, [history, id, editForm]);
+
   
-    //  look at this when making image optional
     const handleChangeImage = (event) => {
       if (event.target.files.length) {
         URL.revokeObjectURL(image);
@@ -103,8 +139,13 @@ function TaskForm(props) {
       image && formData.append("image", imageInput.current.files[0]);
   
       try {
-        const { data } = await axiosReq.post("/tasks/", formData);
-        history.push(`/tasks/${data.id}`);
+        if (editForm) { 
+            await axiosReq.put(`/tasks/${id}/`, formData);
+            history.push(`/tasks/${id}`);
+        }
+        else {
+            const { data } = await axiosReq.post("/tasks/", formData);
+            history.push(`/tasks/${data.id}`);}
       } catch (err) {
         console.log(err);
         if (err.response?.status !== 401) {
@@ -183,6 +224,7 @@ function TaskForm(props) {
 
   return (
     <Form onSubmit={handleSubmit}>
+        <h1>{editForm ? "Edit task" : "Create task"}</h1>
       <Row>
         <Col md={8} className="d-block d-md-none">
           {buttons}
