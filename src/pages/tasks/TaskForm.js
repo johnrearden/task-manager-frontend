@@ -86,6 +86,7 @@ function TaskForm(props) {
             due_date,
             image,
             is_owner } = data;
+            console.log(data)
 
         is_owner ? setTaskData({ title,
             excerpt,
@@ -131,12 +132,15 @@ function TaskForm(props) {
       formData.append("title", title);
       formData.append("excerpt", excerpt);
       formData.append("description", description);
-      formData.append("assignee", assignee);
+      assignee && formData.append("assignee", assignee);
       formData.append("priority", priority);
       formData.append("status", status);
-      formData.append("due_date", due_date);
+      due_date && formData.append("due_date", due_date);
       // only append image form data if there is an image
-      image && formData.append("image", imageInput.current.files[0]);
+      
+    if (imageInput?.current?.files[0]) {
+        formData.append("image", imageInput.current.files[0]);
+      }
   
       try {
         if (editForm) { 
@@ -261,7 +265,7 @@ function TaskForm(props) {
                 onChange={handleChange}
               >
                 {/* profile list retrieved dynamically */}
-                <option>none</option>
+                <option value="">none</option>
                 {/* if profies are retrieved */}
                 {/* conditional added at the suggestion of tutor Oisin */}
                 {profiles.length && (
