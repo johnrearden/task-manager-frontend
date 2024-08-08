@@ -136,7 +136,8 @@ function TaskForm(props) {
       formData.append("assignee", assignee || "");
       formData.append("priority", priority);
       formData.append("status", status);
-      due_date && formData.append("due_date", due_date);
+      // based on tutor Roo's solution for the assignee field
+      formData.append("due_date", due_date || "");
       // only append image form data if there is an image
       
     if (imageInput?.current?.files[0]) {
