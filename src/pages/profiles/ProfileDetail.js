@@ -75,20 +75,39 @@ function ProfileDetail() {
               : profile?.lastname
               ? profile?.lastname
               : profile?.owner}
-              {/* render " (me)" if logged-in user is viewing their own profile */}
-              {currentUser?.username === profile?.owner
-                ? " (me)"
-                : ""}
+            {/* add " (me)" if logged-in user is viewing their own profile */}
+            {currentUser?.username === profile?.owner ? " (me)" : ""}
           </h3>
-          {/* show role, pronouns & about info if available */}
           <Row className="justify-content-center no-gutters">
             <Col className="my-2">
-              {profile?.role && <div>Role: {profile?.role}</div>}
-              {profile?.pronouns && <div>Pronouns: {profile?.pronouns}</div>}
-              {profile?.about && (
-                <div className="my-3">
-                  <h5>About</h5> {profile?.about}
-                </div>
+              {/* show all fields if logged-in user is viewing their own profile */}
+              {currentUser?.username === profile?.owner ? (
+                <>
+                  <div>username: {profile?.owner}</div>
+                  <div>First name: {profile?.firstname || "not defined"}</div>
+                  <div className="mb-3">
+                    Last name: {profile?.lastname || "not defined"}
+                  </div>
+                  <div>Role: {profile?.role || "not defined"}</div>
+                  <div>Pronouns: {profile?.pronouns || "not defined"}</div>
+                  <div className="my-3">
+                    <h5>About</h5> {profile?.about || "Not filled in"}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* for other user's profiels, show role, pronouns & about info 
+                  if available */}
+                  {profile?.role && <div>Role: {profile?.role}</div>}
+                  {profile?.pronouns && (
+                    <div>Pronouns: {profile?.pronouns}</div>
+                  )}
+                  {profile?.about && (
+                    <div className="my-3">
+                      <h5>About</h5> {profile?.about || "Not filled in"}
+                    </div>
+                  )}
+                </>
               )}
             </Col>
           </Row>
@@ -107,12 +126,12 @@ function ProfileDetail() {
     <>
       <hr />
       <p className="text-center">
-        {profile?.tasks_count} tasks assigned to {" "}
+        {profile?.tasks_count} tasks assigned to{" "}
         {/* render "me" if logged-in user is viewing their own profile,
         else render firstname if available, elif lastname, else username */}
         {currentUser?.username === profile?.owner
-        ? "me"
-        : profile?.firstname
+          ? "me"
+          : profile?.firstname
           ? profile?.firstname
           : profile?.lastname
           ? profile?.lastname
