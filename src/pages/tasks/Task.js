@@ -248,7 +248,7 @@ const Task = (props) => {
         </Row>
       </Card.Header>
       <Card.Body>
-        <Row y-4>
+        <Row>
           <Col>
             {title && (
               <Card.Title
