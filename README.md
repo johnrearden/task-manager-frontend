@@ -48,6 +48,17 @@ Tasks should remain intact even when their creator (owner) or assignee are delet
 
 #### UX Improvements
 
+##### Tasks without an image
+
+The Moments project that this app is based on requires an image to be added to every task created. 
+This makes sense for the use case of the Moments app, being a photo sharing platform.
+
+For the current task manager app, however, images play a much less important role than other types of content, also reflected in the layout of the [Task Detail page](#task-detail-page).Thus, it would be unpractical to force users to add a photo to every task they create, so this is made optional.
+
+I also decided not to use a placeholder image for tasks that do not have an image attached,
+as this would create an unnecessary distraction without adding information or a positive UX experience. 
+instead, the `CardImage` is displayed conditionally only if there is an image.
+
 ## Project Management | Agile Methodologies
 
 ### Themes, Epics, Stories & Tasks
