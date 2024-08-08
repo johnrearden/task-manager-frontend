@@ -8,6 +8,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 
+// date formatting
+import dayjs from "dayjs";
+
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -325,7 +328,7 @@ const Task = (props) => {
       >
         <Col className={`${styles.DateContainer}`}>
           <span className={`mr-2`}>Due date:</span>
-          <span>{due_date ? due_date : "not defined"}</span>
+          <span>{due_date ? dayjs(due_date).format('ddd | D MMM YYYY') : "not defined"}</span>
         </Col>
         {/* watch/unwatch functionality & watcher count */}
         <Col className={styles.EyeContainer}>
