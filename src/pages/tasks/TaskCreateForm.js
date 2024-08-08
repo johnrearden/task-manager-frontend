@@ -97,7 +97,8 @@ function TaskCreateForm() {
     formData.append("priority", priority);
     formData.append("status", status);
     formData.append("due_date", due_date);
-    formData.append("image", imageInput.current.files[0]);
+    // only append image form data if there is an image
+    image && formData.append("image", imageInput.current.files[0]);
 
     try {
       const { data } = await axiosReq.post("/tasks/", formData);
