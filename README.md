@@ -152,6 +152,8 @@ The Color scheme of the card changes based on the priority of the task:
 - high
 - no priority
 
+The date fields are shown in a format the includes the day of the week, to facilitate processing.
+
 #### Watch/unwatch function
 
 Users can choose if they want to watch tasks created by them, as this might be required for some tasks but not others.
@@ -228,6 +230,7 @@ Following a [suggestion](https://code-institute-room.slack.com/archives/C02MTH5M
 - [CSS `border` shorthand](https://www.w3schools.com/css/css_border_shorthand.asp)
 - [CSS `border-radius` shorthand](https://www.w3schools.com/cssref/css3_pr_border-radius.php)
 - [Warning/Caution in Markdown](https://gist.githubusercontent.com/cseeman/8f3bfaec084c5c4259626ddd9e516c61/raw/9e223c88ea8e445098a9c54d9df8a48e1c2c7151/markdown_examples.md)
+- [`dayjs` documentation](https://day.js.org/docs/en/display/format)
 
 ### Text
 
