@@ -18,6 +18,7 @@ import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 // import ProfileList from "../profiles/ProfileList";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function TaskKanban({ message, filter = "" }) {
   const [tasks, setTasks] = useState({ results: [] });
@@ -52,19 +53,30 @@ function TaskKanban({ message, filter = "" }) {
   return (
     <Row>
       <Col>
-        <i className={`fas fa-search ${listStyles.SearchIcon}`} />
-        <Form
-          className={listStyles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search tasks"
-          />
-        </Form>
+        <Row>
+          <Col className="col-12 col-md-8">
+            <i className={`fas fa-search ${listStyles.SearchIcon}`} />
+            <Form
+              className={listStyles.SearchBar}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <Form.Control
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                type="text"
+                className="mr-sm-2"
+                placeholder="Search tasks"
+              />
+            </Form>
+          </Col>
+          <Col className="d-none d-md-flex col-4 text-right">
+            <Link className="align-self-center" to={`/team`}>
+              <h3>
+                <i className="fa-solid fa-users-line"></i>Teammates
+              </h3>
+            </Link>
+          </Col>
+        </Row>
         {hasLoaded ? (
           <>
             {tasks.results.length ? (
@@ -146,9 +158,6 @@ function TaskKanban({ message, filter = "" }) {
           </Container>
         )}{" "}
       </Col>
-      {/* <Col className="d-none d-lg-block col-3 p-0 p-lg-2">
-        <ProfileList />
-      </Col> */}
     </Row>
   );
 }
