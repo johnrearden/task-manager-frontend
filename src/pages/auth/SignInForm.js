@@ -40,7 +40,7 @@ function SignInForm() {
       // store token timestamp in local storage
       setTokenTimestamp(data);
       // redirect user
-      history.push("/");
+      history.goBack();
         } catch (err) {
       setErrors(err.response?.data);
     }
