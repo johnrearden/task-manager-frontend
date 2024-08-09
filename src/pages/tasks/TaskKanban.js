@@ -11,7 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { fetchMoreData } from "../../utils/utils";
 import appStyles from "../../App.module.css";
-// import styles from "../../styles/TaskKanban.module.css";
+import styles from "../../styles/TaskKanban.module.css";
 import listStyles from "../../styles/TaskList.module.css";
 import Task from "./Task";
 import Asset from "../../components/Asset";
@@ -69,53 +69,70 @@ function TaskKanban({ message, filter = "" }) {
           <>
             {tasks.results.length ? (
               <>
-              <Row>
-            
-              <Col className="col-4">
-              <h2 className="text-center">To do</h2>
-              <InfiniteScroll
-                children={tasks.results.map((task) => (
-                task.status === "TO-DO" && (
-                  <Task key={task.id} {...task} setTasks={setTasks} />
-                )
-                ))}
-                dataLength={tasks.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!tasks.next}
-                next={() => fetchMoreData(tasks, setTasks)}
-              />
-              </Col>
+                <div className={`${styles.KanbanContainer}`}>
+                  <div
+                    className={`
+                      ${styles.KanbanColumn}
+                      ${appStyles.Rounded}
+                    `}
+                  >
+                    <h2 className="text-center">To do</h2>
+                    <InfiniteScroll
+                      children={tasks.results.map(
+                        (task) =>
+                          task.status === "TO-DO" && (
+                            <Task key={task.id} {...task} setTasks={setTasks} />
+                          )
+                      )}
+                      dataLength={tasks.results.length}
+                      loader={<Asset spinner />}
+                      hasMore={!!tasks.next}
+                      next={() => fetchMoreData(tasks, setTasks)}
+                    />
+                  </div>
 
-              <Col className="col-4">
-              <h2 className="text-center">In progress</h2>
-              <InfiniteScroll
-                children={tasks.results.map((task) => (
-                task.status === "IN-PROGRESS" && (
-                  <Task key={task.id} {...task} setTasks={setTasks} />
-                )
-                ))}
-                dataLength={tasks.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!tasks.next}
-                next={() => fetchMoreData(tasks, setTasks)}
-              />
-              </Col>
+                  <div
+                    className={`
+                      ${styles.KanbanColumn}
+                      ${appStyles.Rounded}
+                    `}
+                  >
+                    <h2 className="text-center">In progress</h2>
+                    <InfiniteScroll
+                      children={tasks.results.map(
+                        (task) =>
+                          task.status === "IN-PROGRESS" && (
+                            <Task key={task.id} {...task} setTasks={setTasks} />
+                          )
+                      )}
+                      dataLength={tasks.results.length}
+                      loader={<Asset spinner />}
+                      hasMore={!!tasks.next}
+                      next={() => fetchMoreData(tasks, setTasks)}
+                    />
+                  </div>
 
-              <Col className="col-4">
-              <h2 className="text-center">Done</h2>
-              <InfiniteScroll
-                children={tasks.results.map((task) => (
-                task.status === "DONE" && (
-                  <Task key={task.id} {...task} setTasks={setTasks} />
-                )
-                ))}
-                dataLength={tasks.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!tasks.next}
-                next={() => fetchMoreData(tasks, setTasks)}
-              />
-              </Col>
-              </Row>
+                  <div
+                    className={`
+                      ${styles.KanbanColumn}
+                      ${appStyles.Rounded}
+                    `}
+                  >
+                    <h2 className="text-center">Done</h2>
+                    <InfiniteScroll
+                      children={tasks.results.map(
+                        (task) =>
+                          task.status === "DONE" && (
+                            <Task key={task.id} {...task} setTasks={setTasks} />
+                          )
+                      )}
+                      dataLength={tasks.results.length}
+                      loader={<Asset spinner />}
+                      hasMore={!!tasks.next}
+                      next={() => fetchMoreData(tasks, setTasks)}
+                    />
+                  </div>
+                </div>
               </>
             ) : (
               <Container className={appStyles.Content}>

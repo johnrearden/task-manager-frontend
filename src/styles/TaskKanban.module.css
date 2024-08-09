@@ -1,0 +1,16 @@
+/* horizontal scrolling based on 
+https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 */
+.KanbanContainer{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    /* smooth "overflow scrolling" on iOS */
+    -webkit-overflow-scrolling: touch;
+}
+
+.KanbanColumn {
+    flex: 0 0 auto;
+    padding: 1rem;
+    margin: 0.5rem;
+    border: 4px solid orange;
+}

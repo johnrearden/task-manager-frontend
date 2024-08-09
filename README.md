@@ -147,6 +147,11 @@ The Color scheme of the card changes based on the priority of the task:
 
 ##### Searching
 
+#### Kanban board
+
+I also implemented a task Kanban board, where tasks are automatically sorted based on their status.
+Inspired by GitHub Projects and Trello, I implemented horizontal scrolling for this view.
+
 #### Task detail page
 
 The card header contains an avatar with a link to the [assigned user's profile](#profile-detail-page),
@@ -249,6 +254,7 @@ Following a [suggestion](https://code-institute-room.slack.com/archives/C02MTH5M
 - [CSS `border-radius` shorthand](https://www.w3schools.com/cssref/css3_pr_border-radius.php)
 - [Warning/Caution in Markdown](https://gist.githubusercontent.com/cseeman/8f3bfaec084c5c4259626ddd9e516c61/raw/9e223c88ea8e445098a9c54d9df8a48e1c2c7151/markdown_examples.md)
 - [`dayjs` documentation](https://day.js.org/docs/en/display/format)
+- [horizontal scrolling](https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6)
 
 ### Text
 
