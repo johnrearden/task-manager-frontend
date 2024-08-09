@@ -36,14 +36,25 @@ const ProfileEditForm = () => {
   const { firstname, lastname, role, pronouns, about, image } = profileData;
 
   const [errors, setErrors] = useState({});
+      
+  // code suggestion by Spencer Barriball
+  const [isMounted, setIsMounted] = useState(true);
 
   useEffect(() => {
+
+    // Set isMounted to true when the component mounts
+    // code suggestion by Spencer Barriball
+    setIsMounted(true);
+
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { firstname, lastname, role, pronouns, about, image } = data;
-          setProfileData({ firstname, lastname, role, pronouns, about, image });
+          // conditional suggested by Spencer Barriball
+          if (isMounted) {
+            setProfileData({ firstname, lastname, role, pronouns, about, image })
+          };
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -54,7 +65,14 @@ const ProfileEditForm = () => {
     };
 
     handleMount();
-  }, [currentUser, history, id]);
+
+    // cleanup function to set isMounted to false when the component unmounts
+    // code suggestion by Spencer Barriball
+    return () => {
+      setIsMounted(false);
+    };
+
+  }, [currentUser, history, id, isMounted]);
 
   const handleChange = (event) => {
     setProfileData({

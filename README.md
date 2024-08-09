@@ -230,11 +230,14 @@ For all other users, only filled-in fields and the [conditially rendered name](#
 
 ### Code credits
 
-This project was developed on the basis of the [DRF-API](https://github.com/Code-Institute-Solutions/drf-api) by [Code Institute](https://github.com/Code-Institute-Solutions/).
+
+This project was developed on the basis of the [Moments](https://github.com/Code-Institute-Solutions/moments0) walkthrough project by [Code Institute](https://github.com/Code-Institute-Solutions/). 
+
+Back End based on[DRF-API](https://github.com/Code-Institute-Solutions/drf-api) by [Code Institute](https://github.com/Code-Institute-Solutions/).
 
 I have also consulted the project [Tick It](https://github.com/Code-Institute-Submissions/ci_pp5_tick_it_react) by [Jamie King](https://github.com/jkingportfolio) and implemented the Task deletion confirmation modal based on it.
 
-Front End based on [Moments](https://github.com/Code-Institute-Solutions/moments0) by [Code Institute](https://github.com/Code-Institute-Solutions/).
+Spencer Barriball kindly provided a [suggestion](https://code-institute-room.slack.com/archives/C02MTH5MBDG/p1723141476108919?thread_ts=1723121474.717569&cid=C02MTH5MBDG) to get rid of the [non-breaking warning](#83) in the Profile Edit Form, which is also present in the [Moments](https://github.com/Code-Institute-Solutions/moments0) walkthrough project by [Code Institute](https://github.com/Code-Institute-Solutions/).
 
 ### Related advice
 
