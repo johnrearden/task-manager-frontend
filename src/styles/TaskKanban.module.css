@@ -12,5 +12,6 @@ https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 
     flex: 0 0 auto;
     padding: 1rem;
     margin: 0.5rem;
-    border: 4px solid orange;
+    border: 2px solid var(--light-gray);
+    background-color: var(--white);
 }

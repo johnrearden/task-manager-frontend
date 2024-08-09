@@ -18,6 +18,8 @@
   /* neutrals */
   --light-neutral: #F9FAFC;
   --white: #FFFFFF;
+  --gray: #242a3d;
+  --light-gray: #dadadf;
 }
 
 .App {
@@ -34,7 +36,7 @@
   background-color: #ffffff;
   padding: 10px;
   border-radius: 2px;
-  border: 1px solid #dadadf;
+  border: 1px solid var(--light-gray);
 }
 
 .FillerImage {
