@@ -60,13 +60,13 @@ In some cases, 1. is shortened to only show the first name even if a last name i
 
 ##### Tasks without an image
 
-The Moments project that this app is based on requires an image to be added to every task created. 
+The Moments project that this app is based on requires an image to be added to every task created.
 This makes sense for the use case of the Moments app, being a photo sharing platform.
 
 For the current task manager app, however, images play a much less important role than other types of content, also reflected in the layout of the [Task Detail page](#task-detail-page).Thus, it would be unpractical to force users to add a photo to every task they create, so this is made optional.
 
 I also decided not to use a placeholder image for tasks that do not have an image attached,
-as this would create an unnecessary distraction without adding information or a positive UX experience. 
+as this would create an unnecessary distraction without adding information or a positive UX experience.
 instead, the `CardImage` is displayed conditionally only if there is an image.
 
 ## Project Management | Agile Methodologies
@@ -104,7 +104,6 @@ Clicking on a profile avatar or name leads to the relevant [profile detail page]
 Clicking on the heading **Teammates** leads to the [profile list page](#profile-list).
 
 On small screen sizes, the [Navbar](#navigation-bar) includes an extra link to the [profile list page](#profile-list).
-
 
 ### Footer
 
@@ -158,7 +157,7 @@ The card header contains an avatar with a link to the [assigned user's profile](
 the due date / watch box contains the [watch/unwatch icon](#watchunwatch-function),
 and the bottom part of the card displays the avatar of the tasks's owner (creator) with a link to their [profile](#profile-detail-page).
 
-XXXX Which fields are shown with placeholders, which fields aren't 
+XXXX Which fields are shown with placeholders, which fields aren't
 
 The Color scheme of the card changes based on the priority of the task:
 
@@ -182,7 +181,7 @@ The watch button is an eye icon and a toolip instruction is show when hovering o
 This page shows a user's profile information and [tasks assigned to them](#task-list).
 
 For logged-in users, this shows all profile fields including empty ones.
-In addition, the conditionally rendered user name has the suffix "(me)" 
+In addition, the conditionally rendered user name has the suffix "(me)"
 to indicate the user is viewing their own profile.
 
 For all other users, only filled-in fields and the [conditially rendered name](#conditionally-rendered-names) is shown.
@@ -255,6 +254,7 @@ Following a [suggestion](https://code-institute-room.slack.com/archives/C02MTH5M
 - [Warning/Caution in Markdown](https://gist.githubusercontent.com/cseeman/8f3bfaec084c5c4259626ddd9e516c61/raw/9e223c88ea8e445098a9c54d9df8a48e1c2c7151/markdown_examples.md)
 - [`dayjs` documentation](https://day.js.org/docs/en/display/format)
 - [horizontal scrolling](https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6)
+- [Bootstrap `small`: faded text with smaller size](https://getbootstrap.com/docs/4.6/content/typography/)
 
 ### Text
 

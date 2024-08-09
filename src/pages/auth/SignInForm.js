@@ -105,6 +105,11 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
+            <p className="mt-3 mb-0 text-center smaller">
+              <small>
+              You need to have thrid-party cookies enabled to sign in.
+              </small>
+            </p>
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
