@@ -15,7 +15,7 @@ import styles from "../../styles/TaskList.module.css";
 import Task from "./Task";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
-import ProfileList from "../profiles/ProfileList";
+// import ProfileList from "../profiles/ProfileList";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function TaskList({ message, filter = "" }) {
@@ -50,7 +50,7 @@ function TaskList({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col >
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}

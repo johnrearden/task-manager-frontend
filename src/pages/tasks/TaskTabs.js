@@ -1,35 +1,43 @@
 import React from "react";
 import TaskList from "./TaskList";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Tab, Tabs } from "react-bootstrap";
+import { Col, Row, Tab, Tabs } from "react-bootstrap";
+import ProfileList from "../profiles/ProfileList";
 
 function TaskTabs() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
   return (
-    <Tabs defaultActiveKey="assigned" id="task-tabs">
-      <Tab eventKey="assigned" title="Assigned to me">
-        <TaskList
-          message="No results found. Adjust the search keyword assign a task to yourself."
-          filter={`assignee__profile=${profile_id}&ordering=-updated_at&`}
-        />
-      </Tab>
-      <Tab eventKey="Watched by me" title="Watched by me">
-        <TaskList
-          message="No results found. Adjust the search keyword or watch a task."
-          filter={`watched__owner__profile=${profile_id}&ordering=-watchers__created_at&`}
-        />
-      </Tab>
-      <Tab eventKey="Created by me" title="Created by me">
-        <TaskList
-          message="No results found. Adjust the search keyword or create a task."
-          filter={`owner__profile=${profile_id}&ordering=-created_at&`}
-        />
-      </Tab>
-      <Tab eventKey="All" title="All">
-        <TaskList message="No results found. Adjust the search keyword." />
-      </Tab>
-    </Tabs>
+    <Row className="h-100">
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <Tabs defaultActiveKey="assigned" id="task-tabs">
+          <Tab eventKey="assigned" title="Assigned to me">
+            <TaskList
+              message="No results found. Adjust the search keyword assign a task to yourself."
+              filter={`assignee__profile=${profile_id}&ordering=-updated_at&`}
+            />
+          </Tab>
+          <Tab eventKey="Watched by me" title="Watched by me">
+            <TaskList
+              message="No results found. Adjust the search keyword or watch a task."
+              filter={`watched__owner__profile=${profile_id}&ordering=-watchers__created_at&`}
+            />
+          </Tab>
+          <Tab eventKey="Created by me" title="Created by me">
+            <TaskList
+              message="No results found. Adjust the search keyword or create a task."
+              filter={`owner__profile=${profile_id}&ordering=-created_at&`}
+            />
+          </Tab>
+          <Tab eventKey="All" title="All">
+            <TaskList message="No results found. Adjust the search keyword." />
+          </Tab>
+        </Tabs>
+      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <ProfileList />
+      </Col>
+    </Row>
   );
 }
 
