@@ -19,6 +19,7 @@ import TaskEditForm from "./pages/tasks/TaskEditForm";
 import TaskKanban from "./pages/tasks/TaskKanban";
 import Footer from "./components/Footer";
 import Landing from "./pages/landing/Landing";
+import TaskTabs from "./pages/tasks/TaskTabs";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -41,6 +42,13 @@ function App() {
             path="/kanban"
             render={() => (
               <TaskKanban message="No results found. Adjust the search keyword." />
+            )}
+          />
+          <Route
+            exact
+            path="/tabs"
+            render={() => (
+              <TaskTabs message="No results found. Adjust the search keyword." />
             )}
           />
           <Route
