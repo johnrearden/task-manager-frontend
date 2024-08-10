@@ -18,6 +18,7 @@ import NotFound from "./components/NotFound";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import TaskKanban from "./pages/tasks/TaskKanban";
 import Footer from "./components/Footer";
+import Landing from "./pages/landing/Landing";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -88,6 +89,7 @@ function App() {
             path="/profiles/:id/edit/password"
             render={() => <UserPasswordForm />}
           />
+          <Route exact path="/landing" render={() => <Landing />} />
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>
