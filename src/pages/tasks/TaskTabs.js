@@ -21,7 +21,10 @@ function TaskTabs() {
               />
       </Tab>
       <Tab eventKey="Created by me" title="Created by me">
-        Created by me"
+      <TaskList
+                message="No results found. Adjust the search keyword or create a task."
+                filter={`owner__profile=${profile_id}&ordering=-created_at&`}
+              />
       </Tab>
       <Tab eventKey="All" title="All">
         <TaskList message="No results found. Adjust the search keyword." />
