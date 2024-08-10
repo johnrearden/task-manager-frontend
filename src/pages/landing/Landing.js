@@ -29,6 +29,9 @@ function Landing() {
             p-4 `}
         >
           <h1 className={signupStyles.Header}>Welcome!</h1>
+          <p>The cheerful task manager helps you keep track of your tasks, 
+            see how your teammates are getting on, and feel energized in the process!
+          </p>
         </Container>
         <Container
           className={`mt-3 text-center
