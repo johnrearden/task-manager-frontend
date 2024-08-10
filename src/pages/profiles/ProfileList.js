@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfileList.module.css";
 import Asset from "../../components/Asset";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
@@ -26,7 +27,8 @@ const ProfileList = () => {
     currentUser && (
       <Container 
           className={`
-          ${appStyles.Content}
+          ${appStyles.Content}          
+          ${styles.Container}
           // overflowY: "scroll"
         `} 
           // id="scrollableDiv"
@@ -50,13 +52,15 @@ const ProfileList = () => {
             )}
             dataLength={profileList.results.length}
             loader={<Asset spinner />}
-            height={400}
+            // height={400}
             hasMore={!!profileList.next}
             endMessage={"You have viewed all teammates"}
             // scrollableTarget="scrollableDiv"
             next={() => {
-              fetchMoreData(useProfileData, useSetProfileData)
-              fetchMoreData(profileList, useProfileData)
+              // the following does not make the right API call
+              // fetchMoreData(useProfileData, useSetProfileData)
+              // fetchMoreData(profileList, useProfileData)
+              fetchMoreData(profileList, useSetProfileData)
             }
           }
           />
