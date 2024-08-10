@@ -10,14 +10,12 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 
-console.log(useSetProfileData)
-
 /**
  * Render the list of profiles from most to least recently updated
  */
 const ProfileList = () => {
   const { profileList } = useProfileData();
-  const { setProfileData } = useSetProfileData();
+  // const { setProfileData } = useSetProfileData();
   const currentUser = useCurrentUser();
   console.log('profileList', profileList)
   console.log('profileList.results.length', profileList.results.length)
@@ -26,7 +24,13 @@ const ProfileList = () => {
   return (
     // only render the component if a user is logged in
     currentUser && (
-      <Container className={appStyles.Content}>
+      <Container 
+          className={`
+          ${appStyles.Content}
+          // overflowY: "scroll"
+        `} 
+          // id="scrollableDiv"
+      >
         {/* if profiles are loaded, render them using the Profile component */}
         {profileList.results.length ? (
           <>
@@ -46,9 +50,14 @@ const ProfileList = () => {
             )}
             dataLength={profileList.results.length}
             loader={<Asset spinner />}
+            height={400}
             hasMore={!!profileList.next}
-            scrollThreshold={5}
-            next={() => {fetchMoreData(useProfileData, useSetProfileData)}
+            endMessage={"You have viewed all teammates"}
+            // scrollableTarget="scrollableDiv"
+            next={() => {
+              fetchMoreData(useProfileData, useSetProfileData)
+              fetchMoreData(profileList, useProfileData)
+            }
           }
           />
           </>
