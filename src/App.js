@@ -17,6 +17,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import NotFound from "./components/NotFound";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import TaskKanban from "./pages/tasks/TaskKanban";
+import Footer from "./components/Footer";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -90,6 +91,7 @@ function App() {
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>
+      <Footer />
     </div>
   );
 }
