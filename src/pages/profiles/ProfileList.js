@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
-import { useProfileData } from "../../contexts/ProfileDataContext";
+import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 
+console.log(useSetProfileData)
+
 /**
  * Render the list of profiles from most to least recently updated
  */
 const ProfileList = () => {
+  const { profileList } = useProfileData();
+  const { setProfileData } = useSetProfileData();
   const currentUser = useCurrentUser();
-  const [profileList, setProfileList] = useState(useProfileData());
+  console.log('profileList', profileList)
+  console.log('profileList.results.length', profileList.results.length)
+  console.log('!!profileList.next', !!profileList.next)
 
   return (
     // only render the component if a user is logged in
@@ -29,11 +35,11 @@ const ProfileList = () => {
                 <i className="fa-solid fa-users-line"></i>Teammates
               </h3>
             </Link>
-            {/* list of users excluding the logged-in user */}
             <InfiniteScroll
                   children={profileList.results.map(
               (profile) =>
                 profile &&
+                /* list of users excluding the logged-in user */
                 Number(profile.id) !== Number(currentUser.pk) && (
                   <Profile key={profile.id} profile={profile} />
                 )
@@ -41,7 +47,9 @@ const ProfileList = () => {
             dataLength={profileList.results.length}
             loader={<Asset spinner />}
             hasMore={!!profileList.next}
-            next={() => fetchMoreData(profileList, setProfileList)}
+            scrollThreshold={5}
+            next={() => {fetchMoreData(useProfileData, useSetProfileData)}
+          }
           />
           </>
         ) : (

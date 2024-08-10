@@ -2,6 +2,7 @@ import { axiosReq } from "../api/axiosDefaults";
 import jwtDecode from "jwt-decode";
 
 export const fetchMoreData = async (resource, setResource) => {
+  console.log('fetchMoreData');
   try {
     const { data } = await axiosReq.get(resource.next);
     setResource((prevResource) => ({
