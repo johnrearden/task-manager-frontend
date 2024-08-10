@@ -212,6 +212,8 @@ For all other users, only filled-in fields and the [conditially rendered name](#
 
 ### Tools used
 
+- [diffchecker.com](https://www.diffchecker.com/): comparing code
+
 ## Deployment
 
 ### Prerequisites
