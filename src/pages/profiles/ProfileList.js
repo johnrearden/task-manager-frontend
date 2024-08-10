@@ -51,7 +51,9 @@ const ProfileList = () => {
                 )
             )}
             dataLength={profileList.results.length}
-            loader={<Asset spinner />}
+            // loader={<Asset spinner />}
+            loader={"InfiniteScroll is loading more profiles..."}
+
             // height={400}
             hasMore={!!profileList.next}
             endMessage={"You have viewed all teammates"}
@@ -59,7 +61,7 @@ const ProfileList = () => {
             next={() => {
               // the following does not make the right API call
               // fetchMoreData(useProfileData, useSetProfileData)
-              // fetchMoreData(profileList, useProfileData)
+
               fetchMoreData(profileList, useSetProfileData)
             }
           }
