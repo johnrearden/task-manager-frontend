@@ -18,6 +18,9 @@ export const ProfileDataProvider = ({ children }) => {
 
   const currentUser = useCurrentUser();
 
+  console.log('profile data context rerendering')
+  console.log('new state', profileData.profileList);
+
   useEffect(() => {
     const handleMount = async () => {
       try {

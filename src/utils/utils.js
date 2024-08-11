@@ -5,6 +5,7 @@ export const fetchMoreData = async (resource, setResource) => {
   console.log('fetchMoreData');
   try {
     const { data } = await axiosReq.get(resource.next);
+    console.log('data.results', data.results)
     setResource((prevResource) => ({
       ...prevResource,
       next: data.next,

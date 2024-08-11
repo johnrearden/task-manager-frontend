@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
@@ -10,17 +10,15 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { axiosReq } from "../../api/axiosDefaults";
 
 /**
  * Render the list of profiles from most to least recently updated
  */
 const ProfileList = () => {
   const { profileList } = useProfileData();
-  // const { setProfileData } = useSetProfileData();
+  const setProfileData = useSetProfileData();
   const currentUser = useCurrentUser();
-  console.log('profileList', profileList)
-  console.log('profileList.results.length', profileList.results.length)
-  console.log('!!profileList.next', !!profileList.next)
 
   return (
     // only render the component if a user is logged in
@@ -47,7 +45,7 @@ const ProfileList = () => {
                 profile &&
                 /* list of users excluding the logged-in user */
                 Number(profile.id) !== Number(currentUser.pk) && (
-                  <Profile key={profile.id} profile={profile} />
+                  <Profile key={profile.id} profile={profile} setProfileData={setProfileData} />
                 )
             )}
             dataLength={profileList.results.length}
@@ -58,11 +56,20 @@ const ProfileList = () => {
             hasMore={!!profileList.next}
             endMessage={"You have viewed all teammates"}
             // scrollableTarget="scrollableDiv"
-            next={() => {
-              // the following does not make the right API call
-              // fetchMoreData(useProfileData, useSetProfileData)
-
-              fetchMoreData(profileList, useSetProfileData)
+            next={async () => {
+              try {
+                const { data } = await axiosReq.get(profileList.next);
+                setProfileData(prev => ({
+                  ...prev,
+                  profileList: {
+                    next: data.next,
+                    results: [...prev.profileList.results, ...data.results]
+                  },
+                  
+                }))
+              } catch (err) {
+                console.log(err);
+              }
             }
           }
           />
