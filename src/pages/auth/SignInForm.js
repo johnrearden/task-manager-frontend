@@ -6,7 +6,7 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
+// import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
 import { Link, useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 
-import door from "../../assets/door.jpg";
+// import door from "../../assets/door.jpg";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -56,9 +56,16 @@ function SignInForm() {
   };
 
   return (
-    <Row className={styles.Row}>
+    <Row className={`
+      ${styles.Row}
+      ${styles.Door}
+    `}>
       <Col className="my-auto p-0 p-md-2" md={6}>
-        <Container className={`${appStyles.Content} p-4 `}>
+        <Container className={`
+          ${appStyles.Content}
+          ${appStyles.Rounded}
+          p-4 
+        `}>
           <h1 className={styles.Header}>sign in</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
@@ -114,13 +121,17 @@ function SignInForm() {
             </p>
           </Form>
         </Container>
-        <Container className={`mt-3 ${appStyles.Content}`}>
+        <Container className={`
+          mt-3 
+          ${appStyles.Content}
+          ${appStyles.LittleRounded}
+        `}>
           <Link className={styles.Link} to="/signup">
-            Don't have an account? <span>Sign up now!</span>
+            Don't have an account? <span>Sign up</span>
           </Link>
         </Container>
       </Col>
-      <Col
+      {/* <Col
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
       >
@@ -128,7 +139,7 @@ function SignInForm() {
           className={`${appStyles.FillerImage}`}
           src={door}
         />
-      </Col>
+      </Col> */}
     </Row>
   );
 }

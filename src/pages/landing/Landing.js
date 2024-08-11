@@ -11,13 +11,13 @@ import styles from "../../styles/Landing.module.css";
 import signupStyles from "../../styles/SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
 
-// import door from "../../assets/door.jpg";
 
 function Landing() {
   return (
     <Row
       className={`
         ${signupStyles.Row}
+        ${signupStyles.Swirl}
         justify-content-center
     `}
     >

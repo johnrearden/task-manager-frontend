@@ -1,6 +1,20 @@
 .Row {
     height: calc(100vh - 81px);
   }
+
+.Door {
+  background: url("../assets/door.jpg") no-repeat center center/cover;
+}
+
+.Silhouette {
+  background: url("../assets/silhouette.jpg") no-repeat center center/cover;
+}
+
+.Swirl {
+  background: url("../assets/orange-swirl.jpg") no-repeat center center/cover;
+
+}
+
   .Input {
     background: #ffffff;
     border: 1px solid #f0f1f9;

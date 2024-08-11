@@ -10,10 +10,10 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
+// import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
-import silhouette from "../../assets/silhouette.jpg";
+// import silhouette from "../../assets/silhouette.jpg";
 
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -49,9 +49,28 @@ const SignUpForm = () => {
   };
 
   return (
-    <Row className={styles.Row}>
-      <Col className="my-auto py-2 p-md-2" md={6}>
-        <Container className={`${appStyles.Content} p-4 `}>
+    <Row className={`
+      ${styles.Row}
+      ${styles.Silhouette}
+    `}>
+      <Col className="mb-auto mr-auto py-2 p-md-2" md={6} lg={4}>
+      <Container className={`
+          mt-3 
+          ${appStyles.Content}
+          ${appStyles.LittleRounded}
+        `}>
+          <Link className={styles.Link} to="/signin">
+            Already have an account? <span>Sign in</span>
+          </Link>
+        </Container>
+      </Col>
+
+      <Col className="mt-auto ml-auto py-2 p-md-2" md={6}>
+        <Container className={`
+          ${appStyles.Content}
+          ${appStyles.Rounded}
+          p-4 
+        `}>
           <h1 className={styles.Header}>sign up</h1>
 
           <Form onSubmit={handleSubmit}>
@@ -123,13 +142,8 @@ const SignUpForm = () => {
           </Form>
         </Container>
 
-        <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/signin">
-            Already have an account? <span>Sign in</span>
-          </Link>
-        </Container>
       </Col>
-      <Col
+      {/* <Col
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
       >
@@ -137,7 +151,7 @@ const SignUpForm = () => {
           className={`${appStyles.FillerImage}`}
           src={silhouette}
         />
-      </Col>
+      </Col> */}
     </Row>
   );
 };
