@@ -49,7 +49,7 @@ function TaskList({ message, filter = "" }) {
   }, [filter, query, pathname, currentUser]);
 
   return (
-    <Row className="h-100">
+    <Row className="h-100 mt-3">
       <Col >
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
